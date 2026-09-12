@@ -1,2 +1,8 @@
 # TEAM020
 MAIP 2026 Assignment
+
+Sneha Mupparthi; 2025MB26183; Ph 8885256685
+Durgesh Kumar Nirvan;2025MB26073; Ph 9782090475
+Gottumukkala Chandra Sekhar Varma; 2025MB26041; Ph 8143466458
+Gitika Sharma; 2025mb26069; Ph 8076109578
+MD Abdul Samadkhan; 2025MB26192; Ph 8217355052
