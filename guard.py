@@ -3,14 +3,37 @@ import sys
 import threading
 import time
 import tkinter as tk
+from datetime import datetime
 from pathlib import Path
 from tkinter import messagebox
 
 from guard_common import STATUS_INSIDE, ask_consent, check_network
 
 SECUREDESK_PATH = Path(__file__).with_name("securedesk.py")
+LOG_PATH = Path(__file__).with_name("session_log.txt")
 CAMERA_WINDOW = "Screen Privacy Guard"
 MAX_FAILED_READS = 30
+
+COVER_SHOWN = "Phone detected - screen covered"
+COVER_REMOVED = "Screen cover removed"
+
+
+def log_event(text):
+    try:
+        needs_newline = False
+        try:
+            with open(LOG_PATH, "rb") as existing:
+                existing.seek(-1, 2)
+                needs_newline = existing.read(1) != b"\n"
+        except OSError:
+            pass
+
+        with open(LOG_PATH, "a", encoding="utf-8") as log_file:
+            if needs_newline:
+                log_file.write("\n")
+            log_file.write(f"{datetime.now():%Y-%m-%d %H:%M:%S} | {text}\n")
+    except Exception:
+        pass
 
 
 def start_securedesk():
@@ -68,8 +91,16 @@ def monitor(process, detector, detection):
     import cv2
 
     cover = None
+    cover_up = False
     camera = None
     started = False
+
+    def close_cover():
+        if cover is not None:
+            cover.close()
+            if cover_up:
+                log_event(COVER_REMOVED)
+
     try:
         from screen_cover import ScreenCover
 
@@ -95,9 +126,14 @@ def monitor(process, detector, detection):
             cv2.imshow(CAMERA_WINDOW, detector.process_frame(frame, blur=False))
 
             if detector.high_risk:
-                cover.show()
-            else:
+                if not cover_up:
+                    cover.show()
+                    cover_up = True
+                    log_event(COVER_SHOWN)
+            elif cover_up:
                 cover.hide()
+                cover_up = False
+                log_event(COVER_REMOVED)
             cover.update()
 
             if cv2.waitKey(1) & 0xFF == ord("q"):
@@ -107,7 +143,7 @@ def monitor(process, detector, detection):
         return None
     finally:
         run_cleanup(
-            lambda: cover.close() if cover is not None else None,
+            close_cover,
             lambda: camera.release() if camera is not None else None,
             detector.close,
             cv2.destroyAllWindows,
