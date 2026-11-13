@@ -12,6 +12,8 @@ CONFIDENCE_THRESHOLD = 0.25
 IMAGE_SIZE = 512
 BLUR_DOWNSCALE = 4
 PHONE_CLASS_ID = 67
+PERSON_CLASS_ID = 0
+PERSON_CONFIDENCE = 0.5
 GRACE_PERIOD_SECONDS = 2
 
 INITIAL_WINDOW_SIZE = 5
@@ -42,6 +44,7 @@ class PhoneDetector:
 
         self.state = STATE_IDLE
         self.last_detected_time = None
+        self.last_person_time = None
         self.initial_window = deque(maxlen=INITIAL_WINDOW_SIZE)
         self.confirm_window = deque(maxlen=CONFIRM_WINDOW_SIZE)
 
@@ -64,10 +67,16 @@ class PhoneDetector:
                 frame,
                 imgsz=IMAGE_SIZE,
                 conf=CONFIDENCE_THRESHOLD,
-                classes=[PHONE_CLASS_ID],
+                classes=[PHONE_CLASS_ID, PERSON_CLASS_ID],
                 verbose=False,
             )[0]
-            self.results_queue.put(len(results.boxes) > 0)
+            classes = results.boxes.cls.tolist()
+            confidences = results.boxes.conf.tolist()
+            phone_detected = PHONE_CLASS_ID in classes
+            person_present = any(
+                cls == PERSON_CLASS_ID and conf >= PERSON_CONFIDENCE for cls, conf in zip(classes, confidences)
+            )
+            self.results_queue.put((phone_detected, person_present))
 
     @property
     def high_risk(self):
@@ -83,6 +92,7 @@ class PhoneDetector:
         self._drain_results()
         self.state = STATE_IDLE
         self.last_detected_time = None
+        self.last_person_time = None
         self.initial_window.clear()
         self.confirm_window.clear()
 
@@ -91,7 +101,10 @@ class PhoneDetector:
             self.latest_frame = frame
 
         while not self.results_queue.empty():
-            phone_detected = self.results_queue.get_nowait()
+            phone_detected, person_present = self.results_queue.get_nowait()
+
+            if person_present:
+                self.last_person_time = time.time()
 
             if self.state == STATE_IDLE:
                 self.initial_window.append(phone_detected)
