@@ -5,7 +5,6 @@ import sys
 import threading
 import time
 import tkinter as tk
-from collections import namedtuple
 from ctypes import wintypes
 from datetime import datetime
 from pathlib import Path
@@ -14,10 +13,6 @@ from tkinter import messagebox
 from guard_common import CONFIG_PATH, STATUS_INSIDE, ask_consent, check_network
 
 SECUREDESK_PATH = Path(__file__).with_name("securedesk.py")
-DEFAULT_APP_NAME = "SecureDesk"
-HANDOVER_SECONDS = 5
-HANDOVER_MESSAGE = "This application hands over to another process and cannot be protected by this version."
-ProtectedApp = namedtuple("ProtectedApp", "path name command")
 LOG_PATH = Path(__file__).with_name("session_log.txt")
 CAMERA_WINDOW = "Camera ON"
 MAX_FAILED_READS = 30
@@ -196,52 +191,11 @@ def lock_workstation():
         return False
 
 
-def build_command(path):
-    if path.suffix.lower() in (".py", ".pyw"):
-        return [sys.executable, str(path)]
-    return [str(path)]
+def start_securedesk():
+    return subprocess.Popen([sys.executable, str(SECUREDESK_PATH)])
 
 
-def load_protected_app():
-    try:
-        config = json.loads(CONFIG_PATH.read_text())
-        raw_path = config.get("protected_app")
-        raw_name = config.get("protected_app_name")
-    except Exception:
-        raw_path = raw_name = None
-
-    path_text = raw_path.strip().strip('"').strip() if isinstance(raw_path, str) else ""
-    if not path_text:
-        return ProtectedApp(SECUREDESK_PATH, DEFAULT_APP_NAME, build_command(SECUREDESK_PATH))
-
-    path = Path(path_text)
-    if not path.is_absolute():
-        path = Path(__file__).parent / path
-    name = raw_name.strip() if isinstance(raw_name, str) else ""
-    return ProtectedApp(path, name or path.stem, build_command(path))
-
-
-def app_problem(app):
-    if not app.path.is_file():
-        return (
-            f"{app.name} could not be started because its file was not found:\n\n{app.path}\n\n"
-            "Nothing was started. Please ask your IT administrator to check the Guard Setup."
-        )
-    return None
-
-
-def start_protected_app(app):
-    return subprocess.Popen(app.command, cwd=str(app.path.parent))
-
-
-def launch(app):
-    try:
-        return start_protected_app(app), None
-    except OSError as error:
-        return None, f"{app.name} could not be started.\n\n{error}\n\nNothing was started."
-
-
-def stop_protected_app(process):
+def stop_securedesk(process):
     if process.poll() is not None:
         return
     process.terminate()
@@ -288,7 +242,7 @@ def run_cleanup(*steps):
         raise first_error
 
 
-def monitor(process, detector, detection, app, started_at):
+def monitor(process, detector, detection):
     import cv2
 
     cover = None
@@ -307,7 +261,7 @@ def monitor(process, detector, detection, app, started_at):
         nonlocal camera, cover, absence_done
         absence_done = True
         for step in (
-            lambda: stop_protected_app(process),
+            lambda: stop_securedesk(process),
             detector.close,
             lambda: camera.release() if camera is not None else None,
             cv2.destroyAllWindows,
@@ -329,7 +283,7 @@ def monitor(process, detector, detection, app, started_at):
 
         camera = detection.open_webcam()
         if not camera.isOpened():
-            return f"The webcam could not be opened, so {app.name} was closed. Monitoring is required outside the office network."
+            return "The webcam could not be opened, so SecureDesk was closed. Monitoring is required outside the office network."
 
         cover = ScreenCover()
         preview = CameraPreview(cv2)
@@ -344,7 +298,7 @@ def monitor(process, detector, detection, app, started_at):
             if not ok:
                 failed_reads += 1
                 if failed_reads > MAX_FAILED_READS:
-                    return f"The webcam stopped working, so {app.name} was closed. Monitoring is required outside the office network."
+                    return "The webcam stopped working, so SecureDesk was closed. Monitoring is required outside the office network."
                 time.sleep(0.05)
                 continue
             failed_reads = 0
@@ -375,13 +329,6 @@ def monitor(process, detector, detection, app, started_at):
                 return None
             if cv2.getWindowProperty(CAMERA_WINDOW, cv2.WND_PROP_VISIBLE) < 1:
                 return None
-
-        ended_after = time.time() - started_at
-        if ended_after < HANDOVER_SECONDS:
-            return (
-                f"{HANDOVER_MESSAGE}\n\n"
-                f"({app.name} ended {ended_after:.1f} seconds after it started, with exit code {process.returncode}.)"
-            )
         return None
     finally:
         if not absence_done:
@@ -390,27 +337,17 @@ def monitor(process, detector, detection, app, started_at):
                 lambda: camera.release() if camera is not None else None,
                 detector.close,
                 cv2.destroyAllWindows,
-                lambda: stop_protected_app(process),
+                lambda: stop_securedesk(process),
             )
         if started:
             print("Camera stopped")
 
 
 def main():
-    app = load_protected_app()
-    problem = app_problem(app)
-    if problem:
-        notify(problem)
-        return
-
     status, message = check_network()
 
     if status == STATUS_INSIDE:
-        process, problem = launch(app)
-        if problem:
-            notify(problem)
-            return
-        process.wait()
+        start_securedesk().wait()
         return
 
     reason = message.removesuffix(" - monitoring ON").removesuffix(" - monitoring OFF")
@@ -419,22 +356,17 @@ def main():
     loader, loaded = preload_detection()
 
     if not ask_consent():
-        print(f"Consent declined - {app.name} not started.")
+        print("Consent declined - SecureDesk not started.")
         loader.join()
         return
 
     loader.join()
     if "detector" not in loaded:
-        notify(f"Monitoring could not be prepared, so {app.name} was not started.\n\n{loaded.get('error')}")
+        notify(f"Monitoring could not be prepared, so SecureDesk was not started.\n\n{loaded.get('error')}")
         return
 
-    process, problem = launch(app)
-    if problem:
-        loaded["detector"].close()
-        notify(problem)
-        return
-
-    problem = monitor(process, loaded["detector"], loaded["detection"], app, time.time())
+    process = start_securedesk()
+    problem = monitor(process, loaded["detector"], loaded["detection"])
     if problem:
         notify(problem)
 
