@@ -6,7 +6,8 @@ from pathlib import Path
 
 CONSENT_TEXT = (
     "To protect sensitive data, this app uses your webcam to detect phones "
-    "during this session. No images or video are stored. Do you agree?"
+    "and to check that you are at your desk during this session. "
+    "No images or video are stored. Do you agree?"
 )
 
 

@@ -1,3 +1,4 @@
+import os
 import queue
 import threading
 import time
@@ -6,6 +7,8 @@ from pathlib import Path
 
 import cv2
 import numpy as np
+
+os.environ["YOLO_OFFLINE"] = "1"  # must be set before ultralytics loads: it turns off the library's usage reports and online checks
 from ultralytics import YOLO
 
 CONFIDENCE_THRESHOLD = 0.25
