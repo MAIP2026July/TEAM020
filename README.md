@@ -1,17 +1,63 @@
-# TEAM020
-**MAIP 2026 Assignment**
+# Team 020 – SessionGuard (Screen Privacy Guard)
 
-## 👥 Team Members
+**Course:** MBAZG583 Management of AI Products (S1-26), BITS Pilani WILP
+**Professor:** Prof. Vinaya Sathyanarayana
+**Product type:** internal security tool for a bank (computer vision)
+**Prototype status:** working. First release: Git tag `v1.0-first-release` (commit `fd19c04`, 13 Nov 2026). Current: tag `v1.1-privacy-fix` (commit `540f846`, 14 Nov 2026)
 
-| Name | Student ID | Contact | GitHub |
-| :--- | :--- | :--- | :--- |
-| **Sneha Mupparthi** | 2025MB26183 | +91 88852 56685 | [https://github.com/snehamupparthi](https://github.com/snehamupparthi) |
-| **Durgesh Kumar Nirvan** | 2025MB26073 | +91 97820 90475 | [https://github.com/2025mb26073](https://github.com/2025mb26073) |
-| **Gottumukkala Chandra Sekhar Varma** | 2025MB26041 | +91 81434 66458 | [https://github.com/chandrasekharvarmag1-dev](https://github.com/chandrasekharvarmag1-dev) |
-| **Gitika Sharma** | 2025MB26069 | +91 80761 09578 | [https://github.com/gitikasharma](https://github.com/gitikasharma) |
-| **MD Abdul Samadkhan** | 2025MB26192 | +91 82173 55052 | - |
+## Team
+| Name | Roll number | Role | GitHub ID | Phone |
+|---|---|---|---|---|
+| Gottumukkala Chandra Sekhar Varma | 2025MB26041 | Product Lead and Prototype/AI Engineer | [chandrasekharvarmag1-dev](https://github.com/chandrasekharvarmag1-dev) | 8143466458 |
+| Sneha Mupparthi | 2025MB26183 | Evaluation and Quality Lead | [snehamupparthi](https://github.com/snehamupparthi) | 8885256685 |
+| Durgesh Kumar Nirvan | 2025MB26073 | Business and Documentation Lead | [2025mb26073](https://github.com/2025mb26073) | 9782090475 |
+| Gitika Sharma | 2025MB26069 | UX and Consent Lead | [gitikasharma](https://github.com/gitikasharma) | 8076109578 |
+| MD Abdul Samadkhan | 2025MB26192 | Data, Privacy and Regulator Lead | — | 8217355052 |
 
----
+## What it is, in three lines
+A bank Employee working on a sensitive screen outside the office is watched by the laptop webcam. If a phone is pointed at the screen, the whole screen is covered by a blurred image within seconds. If the Employee walks away, the protected application closes and Windows locks. No image or video is ever stored. Only short text lines are logged.
 
-## 🚀 About This Repository
-This repository contains the coursework and project deliverables for **TEAM020** under the **MAIP 2026** assignment.
+## Reading order
+| # | File | What you will find |
+|---|---|---|
+| 00 | `00_Executive_Summary_and_Strategy.md` | Problem, jobs to be done, strategy, why this wedge, build vs buy |
+| 01 | `01_PRD.md` | Scope, defined terms, configurable vs fixed, metrics table, roadmap V1/V2/V3, go/no-go |
+| 02 | `02_Workflow_and_Architecture.md` | Swimlane workflow, control loops, C4 level 1 and level 2 (Mermaid) |
+| 03 | `03_UX_and_Trust_Design.md` | Every screen and message the Employee sees, how uncertainty is shown |
+| 04 | `04_Data_Privacy_Ethics_Risk.md` | Exact data held, consent, retention, regulator view, risks, launch checklist |
+| 05 | `05_Model_and_Evaluation.md` | Model choice, measured facts, test plan and results table |
+| 06 | `06_Business_Case_and_Economics.md` | Cost, value, unit economics, optional sale to other banks |
+| 07 | `07_Build_Journey_and_Iterations.md` | How the product was built, step by step, with every rollback |
+| 08 | `08_Detection_Tuning_Log.md` | Every detection experiment: change, observation, decision |
+| 09 | `09_AI_Collaboration_Log.md` | How AI was used, real prompts, where the team overruled the AI |
+| 10 | `10_Contribution_Disclosure.md` | Who did what |
+| 11 | `11_Pitch_Slides.md` | The 10-minute pitch |
+| – | `prototype/` | Source description, setup steps, sample configuration |
+
+## Where each required part of the assignment package lives
+| Required part | File |
+|---|---|
+| Executive summary | `00_Executive_Summary_and_Strategy.md` |
+| Strategy | `00_Executive_Summary_and_Strategy.md` |
+| Product management artifact pack (PRD, workflow, roadmap, metrics) | `01_PRD.md`, `02_Workflow_and_Architecture.md` |
+| UX and trust design | `03_UX_and_Trust_Design.md` |
+| Data, model and evaluation | `05_Model_and_Evaluation.md`, `08_Detection_Tuning_Log.md` |
+| Business and economics | `06_Business_Case_and_Economics.md` |
+| Ethics and risk | `04_Data_Privacy_Ethics_Risk.md` |
+| Prototype | `prototype/`, `07_Build_Journey_and_Iterations.md` |
+| AI collaboration log | `09_AI_Collaboration_Log.md` |
+| Contribution disclosure | `10_Contribution_Disclosure.md` |
+
+## Naming of people
+People are always named by role: **Employee**, **IT Administrator**, **Security Reviewer**, **Compliance Officer**, **Bank (buyer)**. Generic labels for people are not used anywhere in these files.
+
+## Honest limits, in one place
+1. The "office network" check compares the public IP address with a list set by IT. It simulates a real network check.
+2. SecureDesk is a stand-in application. It holds no real data.
+3. Phone detection is probabilistic. It can miss a phone and can blur for a look-alike object: a TV remote was covered in about 5 of 30 informal trials.
+4. The guard protects only the application it starts. A directly opened application is not covered.
+5. One monitor, Windows only, tested on one laptop.
+6. An Employee with enough rights can end the guard in Task Manager.
+7. The detection library (Ultralytics) did DNS lookups and sent anonymous usage statistics (no images, no log content) in v1.0. V1.1 switches this off. This was checked with a probe that sees Python-level network attempts only; real network traffic was not captured. See `04_Data_Privacy_Ethics_Risk.md`.
+8. The old stand-alone files `app.py` and `test_detection.py` are not part of the guard. `app.py` has no absence lock, and `test_detection.py` imports the library directly, so the switch-off does not cover it.
+Details and controls: `04_Data_Privacy_Ethics_Risk.md`.
