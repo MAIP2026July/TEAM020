@@ -1,0 +1,4 @@
+{
+  "office_public_ips": ["203.0.113.10"],
+  "absence_lock_seconds": 30
+}
