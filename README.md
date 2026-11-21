@@ -12,7 +12,7 @@
 | Sneha Mupparthi | 2025MB26183 | Evaluation and Quality Lead | [snehamupparthi](https://github.com/snehamupparthi) | 8885256685 |
 | Durgesh Kumar Nirvan | 2025MB26073 | Business and Documentation Lead | [2025mb26073](https://github.com/2025mb26073) | 9782090475 |
 | Gitika Sharma | 2025MB26069 | UX and Consent Lead | [gitikasharma](https://github.com/gitikasharma) | 8076109578 |
-| MD Abdul Samadkhan | 2025MB26192 | Data, Privacy and Regulator Lead | — | 8217355052 |
+| MD Abdul Samadkhan | 2025MB26192 | Data, Privacy and Regulator Lead | 2025MB26192 | 8217355052 |
 
 ## What it is, in three lines
 A bank Employee working on a sensitive screen outside the office is watched by the laptop webcam. If a phone is pointed at the screen, the whole screen is covered by a blurred image within seconds. If the Employee walks away, the protected application closes and Windows locks. No image or video is ever stored. Only short text lines are logged.
