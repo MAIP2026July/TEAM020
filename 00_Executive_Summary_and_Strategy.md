@@ -23,7 +23,8 @@ The working prototype was built and tuned by the team across many test rounds. T
 ## 3. Jobs to be done
 | Role | The job they hire the product for |
 |---|---|
-| Bank (buyer) — Information Security head | "When Employees work from home on sensitive screens, give me a technical control I can show to an auditor, without recording them." |
+| Bank — Information Security head | "When Employees work from home on sensitive screens, give me a technical control I can show to an auditor, without recording them." |
+| Service Company (buyer) | "Give me a tool I can show the Bank to earn its trust and win projects, and let me offer work from home to Employees on critical projects so they stay." |
 | Employee | "Let me finish my work from home without being watched all day, and tell me clearly when and why my screen was hidden." |
 | IT Administrator | "Let me set the office network and timers once, in one file, without code changes." |
 | Security Reviewer | "After an incident, show me what happened and when, in one line." |

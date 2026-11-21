@@ -27,7 +27,9 @@ Framing: an internal security tool for a bank. The ask is a funded pilot, and th
 - Limits, said openly: office check by IP list, one monitor, can be ended in Task Manager, probabilistic detection, and the detection library's anonymous statistics, which V1.1 switched off (checked at Python level; real traffic not captured).
 
 ## Slide 4 – The business (3 min)
-- Cost to the Bank: about ₹ 183 per seat per month (assumption). Value avoided: about ₹ 417 (assumption). Ratio about 2.3.
+- Who pays: the Service Company, which can show the Bank a working control and offer work from home to Employees on critical projects. The Bank asks for it.
+- Price: ₹ 500 per seat per month. The customer gains about ₹ 1,875 per seat per month (threat about 56 %, retention about 44 %). That is about 3.75 times what it pays (assumptions, to be measured in the pilot).
+- 100 seats: the customer gains about ₹ 22.5 lakh a year and pays ₹ 6 lakh. We earn about ₹ 4.8 lakh a year after running costs and recover the ₹ 1.5 lakh build cost in about 4 months.
 - No cloud or token cost: runs on the laptop.
-- V1: 8 weeks to a go/no-go. V2: protected application chosen by IT, multi-monitor. V3: Bank VDI integration, option to offer to other banks.
+- V1: 8 weeks to a go/no-go. V2: protected application chosen by IT, multi-monitor. V3: Bank VDI integration, sale to more Service Companies.
 - **Ask:** approval and budget for a 10-seat pilot.

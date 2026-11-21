@@ -14,7 +14,8 @@ SessionGuard starts a protected application only after the Employee gives consen
 | IT Administrator | Sets the office public IP list and the lock timer in `config.json` |
 | Security Reviewer | Reads incident lines after an event |
 | Compliance Officer | Approves consent text, scope and retention |
-| Bank (buyer) | Owns the risk and approves the pilot |
+| Bank | Owns the risk and approves the pilot |
+| Service Company (buyer) | Buys the product for its Employees and shows it to the Bank to earn trust and win projects |
 
 ## 4. AI role and why AI
 - **AI task:** real-time object detection on webcam frames. A pretrained YOLO model (`yolo11s`) finds the class "cell phone". The same detector reports whether a person is present.
