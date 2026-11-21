@@ -18,5 +18,7 @@ Making the detection better on a low-configuration laptop, and choosing the mode
 
 **Cutting the logging and dropping the admin dashboard:** I did it to not affect the current release and to plan for the future.
 
+**Version control:** because we had missed version control, we actually crashed the product while we were improving it. This taught us that we should always save our work, or at least the better working version. After that, we committed and secured our work.
+
 ## The team
 My teammates contributed well in evaluating the idea. They were involved in every discussion while we built each feature, they helped in testing the product, and they did their roles perfectly well.
