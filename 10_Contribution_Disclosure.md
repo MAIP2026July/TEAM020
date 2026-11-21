@@ -21,3 +21,8 @@ Claude (chat and Claude Code) was used for planning, code, tests and drafting. E
 
 ## Individual reflections
 Each member writes a personal reflection in their own words, without AI. They are submitted as the course asks.
+
+| Member | Reflection |
+|---|---|
+| Gottumukkala Chandra Sekhar Varma | [`reflections/2025MB26041_Chandra_Sekhar_Varma_Reflection.md`](reflections/2025MB26041_Chandra_Sekhar_Varma_Reflection.md) |
+| Sneha Mupparthi, Durgesh Kumar Nirvan, Gitika Sharma, MD Abdul Samadkhan | To be added by each member in the `reflections/` folder |

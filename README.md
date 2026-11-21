@@ -33,6 +33,7 @@ A bank Employee working on a sensitive screen outside the office is watched by t
 | 10 | `10_Contribution_Disclosure.md` | Who did what |
 | 11 | `11_Pitch_Slides.md` | The 10-minute pitch |
 | 12 | `12_Security_Reviewer_View_V3_Concept.md` | A V3 mock-up screen (not part of the product) and how its data could be stored; files in `demo_manager_view/` |
+| – | `reflections/` | Individual reflections, one file per member (see `10_Contribution_Disclosure.md`) |
 | 05a | `05a_Formal_Test_Log_TEMPLATE.md` | Plan and blank log for the formal measurement run (planned for the pilot, not yet run) |
 | – | `prototype/` | Source description, setup steps, sample configuration |
 
