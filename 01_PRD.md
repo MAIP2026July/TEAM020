@@ -73,9 +73,9 @@ SessionGuard starts a protected application only after the Employee gives consen
 ## 8. Success metrics
 | Metric | How measured | Target | Measured |
 |---|---|---|---|
-| Phone catch rate | 20 trials, phone held toward the screen at about 50 cm; count covers | ≥ 90 % (18 of 20) | Informal: about 30 trials, all covered; formal count pending |
+| Phone catch rate | 20 trials, phone held toward the screen at about 50 cm; count covers | ≥ 90 % (18 of 20) | Informal: about 30 trials with Samsung phones, an iPhone and basic phones, all covered; formal count pending |
 | False cover rate | 10 minutes at the desk, normal objects, no phone; count covers | ≤ 1 per 10 min | Informal: TV remote covered in about 5 of 30 trials; formal count pending |
-| Time to cover | Stopwatch from phone appearing to screen covered; 5 runs | ≤ 3 s average | Informal: usually 1 to 2 s; not timed |
+| Time to cover | Stopwatch from phone appearing to screen covered; 5 runs | ≤ 3 s average | Informal: about 2 s; not timed |
 | Release time | Phone removed to screen clear; 5 runs | 2 s ± 1 s | Informal: about 1 s; not timed |
 | Images stored | Search project and temp folders after all tests | 0 | Checked 14 Nov: the product writes no image or video; code search and folder search agree |
 | Decline test | Click Decline 5 times; check camera light | Camera off 5 of 5 | Informal: camera light never came on; count not logged |

@@ -23,7 +23,7 @@ The full story of each step is in `08_Detection_Tuning_Log.md`.
 | Threading | Detector in a background thread | Keeps the video smooth |
 
 ## 3. Facts already recorded
-These were observed during the build on the development laptop (Windows, CPU only, no graphics card). The scripted checks named below (rule logic, start/stop scenarios, absence-lock scenarios) were run during the build; their scripts are not included in this repository, so they cannot be re-run from here. The only test scripts in `prototype/` are `test_webcam.py` and `test_detection.py`. A blank log for the formal run is in `05a_Formal_Test_Log_TEMPLATE.md`.
+These were observed during the build on the development laptop (Dell Latitude 5490, Intel Core i5-8250U, 7.9 GB RAM, Intel UHD 620 integrated graphics and no separate graphics card, Windows 11 Pro, built-in webcam). The scripted checks named below (rule logic, start/stop scenarios, absence-lock scenarios) were run during the build; their scripts are not included in this repository, so they cannot be re-run from here. The only test scripts in `prototype/` are `test_webcam.py` and `test_detection.py`. A blank log for the formal run is in `05a_Formal_Test_Log_TEMPLATE.md`.
 | Fact | Value | Note |
 |---|---|---|
 | Time per frame at size 640 | about 146 ms (about 7 frames per second) | Before the speed work |
@@ -48,18 +48,18 @@ If a single frame catches the phone with probability p, the chance that the trig
 A modest drop in single-frame accuracy becomes a large drop in catches. This is the reason confidence 0.35 and size 416 were reverted.
 
 ## 5. Test plan and results
-The Result column holds what the team saw on the demo laptop on 14 Nov 2026. "Informal" means manual observation by the team without a stopwatch or a written trial log, so counts are approximate. These are not formal measurements against the protocol in the Test column. The formal run (20 logged trials for T1, stopwatch for T3, T4, T9 and T10) is the first step of the pilot.
+The Result column holds what the team saw on the demo laptop up to 14 Nov 2026. Phones used: Samsung phones, an iPhone and basic phones, held at a normal seated distance and at different angles. Results by phone type were not recorded. "Informal" means manual observation by the team without a stopwatch or a written trial log, so counts are approximate. These are not formal measurements against the protocol in the Test column. The formal run (20 logged trials for T1, stopwatch for T3, T4, T9 and T10) is the first step of the pilot.
 | # | Test | Method | Pass line | Result |
 |---|---|---|---|---|
-| T1 | Phone catch rate | Hold a phone toward the screen 20 times at about 50 cm | ≥ 18 of 20 covered | Informal: about 30 trials, a phone covered every time; some covers were slow (CPU only). Exact count and distance not logged |
+| T1 | Phone catch rate | Hold a phone toward the screen 20 times at about 50 cm | ≥ 18 of 20 covered | Informal: about 30 trials with Samsung phones, an iPhone and basic phones, at a normal seated distance and at all angles; a phone covered every time. Steep or rotating angles were caught less reliably and some covers were slow (CPU only). Exact count and results by phone type not logged |
 | T2 | False cover | 10 minutes at the desk with mouse, charger, cup, notebook, no phone | ≤ 1 cover | Informal: a TV remote was covered as a phone in about 5 of 30 trials. Other desk objects: no false cover seen. Minutes at desk not logged |
-| T3 | Time to cover | Stopwatch, 5 runs | ≤ 3 s average | Informal: usually 1 to 2 s. No stopwatch |
+| T3 | Time to cover | Stopwatch, 5 runs | ≤ 3 s average | Informal: about 2 s. No stopwatch |
 | T4 | Release time | Remove phone, stopwatch, 5 runs | 2 s ± 1 s | Informal: about 1 s. No stopwatch |
 | T5 | Decline | Click Decline 5 times; check camera light | Off in 5 of 5 | Informal: Decline clicked several times (count not logged); the camera light never came on |
 | T6 | No images | Search project and temp folders after T1–T5 | 0 files | Checked 14 Nov: no image or video file written by the product. The code writes only log text (and the old `network_check.py` writes `office_ip.txt`). A search of the project and temp folders found only window screenshots saved by the coding agent's own test scripts, none by the guard or the webcam |
-| T7 | Dim light | Repeat T1, 10 trials | Report rate | Informal: no visible change in dim light; tries not counted |
-| T8 | Different Employees | 3 people, 10 trials each | Gap ≤ 10 percentage points | 2 people tried; no numbers recorded |
-| T9 | Absence lock | Walk away; stopwatch | Lock within timer + 2 s | Informal: worked every time; seconds not timed |
+| T7 | Dim light | Repeat T1, 10 trials | Report rate | Informal: worked fine in dim light, no visible change; tries not counted |
+| T8 | Different Employees | 3 people, 10 trials each | Gap ≤ 10 percentage points | Not tested with different Employees; no numbers recorded |
+| T9 | Absence lock | Walk away; stopwatch | Lock within timer + 2 s | Informal: worked every time as built, with the timer set in `config.json` (demo value 10 s, sample default 30 s); number of runs and seconds not timed |
 | T10 | Startup | Agree to camera ready | ≤ 10 s on pilot laptop | Slow on the development laptop (CPU only, no graphics card); faster on a teammate's better laptop. Seconds not timed, target not confirmed |
 | T11 | Log screen | Open "My Privacy Log" after T1 and T9 | Counters match the events | Informal: counters matched the events made |
 
@@ -71,7 +71,7 @@ These are qualitative observations from live tests, not measurements.
 - On the development laptop the camera is slow to open (model load). The team plans to re-check on a faster laptop.
 - A TV remote that looks like an old phone was covered in about 5 of 30 informal trials. It is the main false-cover case seen.
 - Detection is sometimes slow on the CPU-only development laptop, but the phone was still caught in the end.
-- Results are from two people in total (T8); no gap between them was measured.
+- Results come from the team's own testing. Different Employees were not tested (T8), so no gap between people was measured.
 
 ## 7. Tested software versions
 Python 3.11.9; ultralytics 8.4.142; opencv-python 5.0.0.93; pillow 12.3.0; torch 2.14.0; numpy 2.4.6.
