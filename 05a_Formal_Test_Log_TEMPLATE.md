@@ -1,7 +1,7 @@
-# 05a – Formal test log (TEMPLATE – to be filled in by the team)
+# 05a – Formal test log (planned, not yet run)
 Team 020 – SessionGuard | Members: see `README.md`
 
-`05_Model_and_Evaluation.md` section 5 records informal observations only. Fill this log during the formal run and then copy the totals into `05` and `01` section 8. **Empty cells mean the test has not been run. Do not fill a cell from memory.**
+The tests in `05_Model_and_Evaluation.md` section 5 were done informally, up to 14 Nov 2026. This log is the plan for the formal run, the first step of pilot phase 2 ("Measure", week 5 in `01_PRD.md`). **No formal results exist yet. Empty cells mean the test has not been run.** When it is run, copy the totals into `05` and `01` section 8.
 
 Date: ____  Laptop: ____  Camera: ____  Lighting: ____  Version (tag): ____
 

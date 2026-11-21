@@ -90,7 +90,7 @@ Rules the team member set: one small step at a time; explain before doing; "do n
 **Result on the earlier draft set (14 Nov 2026):**
 | # | Ambiguity found | Action |
 |---|---|---|
-| 1 | Cover time said 1 second in one place and 3 seconds in another | Fixed. All files say 3 seconds |
+| 1 | Cover time said 1 second in one place and 3 seconds in another | Fixed. Cover timing is stated once, as a target of 3 s or less on average (`01_PRD.md` section 8) |
 | 2 | 90-day retention was a proposal; the log has no automatic deletion | Stated plainly in `04_Data_Privacy_Ethics_Risk.md`; enforcement planned for V2 |
 | 3 | Trigger of the absence lock | Confirmed against the build: no person seen for N seconds in a row |
 | 4 | Business figures are assumptions | Marked (A) in `06_Business_Case_and_Economics.md` |

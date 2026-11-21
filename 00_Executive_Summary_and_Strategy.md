@@ -2,7 +2,7 @@
 Team 020 – SessionGuard | Members: see `README.md`
 
 ## 1. Executive summary
-Banks let some staff work on sensitive screens from outside the office. Those screens can show account-holder data, for example a mainframe session. A phone camera pointed at the screen can copy that data in two seconds. Nobody sees it and nothing is recorded. Today the control is a written policy.
+Banks let some Employees work on sensitive screens from outside the office. Those screens can show account-holder data, for example a mainframe session. A phone camera pointed at the screen can copy that data in two seconds. Nobody sees it and nothing is recorded. Today the control is a written policy.
 
 SessionGuard is a small desktop guard for the Employee laptop. It starts the protected application only after the Employee agrees to camera monitoring. Outside the office network, the webcam looks for a phone. If one is seen, a blurred full-screen cover hides the screen at once. If the Employee leaves the seat, the application closes and Windows locks.
 
@@ -23,7 +23,7 @@ The working prototype was built and tuned by the team across many test rounds. T
 ## 3. Jobs to be done
 | Role | The job they hire the product for |
 |---|---|
-| Bank (buyer) — Information Security head | "When staff work from home on sensitive screens, give me a technical control I can show to an auditor, without recording my staff." |
+| Bank (buyer) — Information Security head | "When Employees work from home on sensitive screens, give me a technical control I can show to an auditor, without recording them." |
 | Employee | "Let me finish my work from home without being watched all day, and tell me clearly when and why my screen was hidden." |
 | IT Administrator | "Let me set the office network and timers once, in one file, without code changes." |
 | Security Reviewer | "After an incident, show me what happened and when, in one line." |

@@ -33,7 +33,7 @@ A bank Employee working on a sensitive screen outside the office is watched by t
 | 10 | `10_Contribution_Disclosure.md` | Who did what |
 | 11 | `11_Pitch_Slides.md` | The 10-minute pitch |
 | 12 | `12_Security_Reviewer_View_V3_Concept.md` | A V3 mock-up screen (not part of the product) and how its data could be stored; files in `demo_manager_view/` |
-| 05a | `05a_Formal_Test_Log_TEMPLATE.md` | Blank log for the formal measurement run (to be filled in) |
+| 05a | `05a_Formal_Test_Log_TEMPLATE.md` | Plan and blank log for the formal measurement run (planned for the pilot, not yet run) |
 | – | `prototype/` | Source description, setup steps, sample configuration |
 
 ## Where each required part of the assignment package lives
@@ -49,6 +49,11 @@ A bank Employee working on a sensitive screen outside the office is watched by t
 | Prototype | `prototype/`, `07_Build_Journey_and_Iterations.md` |
 | AI collaboration log | `09_AI_Collaboration_Log.md` |
 | Contribution disclosure | `10_Contribution_Disclosure.md` |
+
+## Quick look without a webcam or the model file
+The full guard needs Windows, a webcam and `yolo11s.pt` (see `prototype/README.md`). Without them you can still see two parts of the product:
+- **Employee log screen:** run `python prototype/view_log.py` and tick "Show sample data (demo only)". It uses only the Python standard library.
+- **V3 mock-up screen:** open `demo_manager_view/manager_view.html` by double-click. It needs no internet. See `12_Security_Reviewer_View_V3_Concept.md`.
 
 ## Naming of people
 People are always named by role: **Employee**, **IT Administrator**, **Security Reviewer**, **Compliance Officer**, **Bank (buyer)**. Generic labels for people are not used anywhere in these files.

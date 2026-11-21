@@ -8,7 +8,7 @@ SessionGuard is an **internal security tool** for a bank. The primary case is in
 
 ## 2. Who decides and what they get
 - **Decision maker:** the Bank's Information Security head, with the Compliance Officer.
-- **What they get:** a technical, auditable control against phone-camera copying of sensitive screens, without recording staff.
+- **What they get:** a technical, auditable control against phone-camera copying of sensitive screens, without recording Employees.
 - **What they use today:** a policy document. Cost near zero. Effect that cannot be checked.
 
 ## 3. Internal value case (per protected seat)
