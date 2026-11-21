@@ -12,7 +12,7 @@ SessionGuard is a security control that a **Service Company** (an IT services fi
 | **Bank** | A technical, auditable control against phone-camera copying of sensitive screens, without recording Employees. The Bank asks for it and approves the pilot |
 | **Employee** | The option to work from home on critical projects, so better well-being. Consent every session, and a log screen to see everything kept |
 
-**Main value: the threat.** Phone-camera theft of account-holder data. **Secondary value: retention** of Employees who would otherwise leave. The project-win and trust value for the Service Company is real but is **not counted** in the numbers below, because we cannot defend a figure for it yet.
+**Main value: the threat.** Phone-camera theft of account-holder data. **Secondary value: retention** of Employees who would otherwise leave. **Extra benefit, not counted in the price:** a Service Company that can show the Bank a working control has about a **5 % better chance of winning projects from financial institutions** (team estimate (A), to be checked in the pilot through feedback from the Bank). We do not put a rupee value on it, because we cannot defend a figure yet. It is extra headroom on top of the numbers below.
 
 ## 2. What it costs us
 | Kind | Meaning | Figure |
@@ -30,7 +30,7 @@ We keep the two kinds apart. The ₹100 is the least we need from every seat. Th
 | **Retention (secondary)** | 2 of every 40 Employees stay (A) × ₹2,00,000 for rehiring and training one person (A) = ₹10,000 | ₹10,000 | **₹833** |
 | **Total** | | ₹22,500 | **₹1,875** |
 
-Threat is 56 % of the value and retention 44 %. Not counted: projects won, trust with the Bank, Employee well-being.
+Threat is 56 % of the value and retention 44 %. Not counted in rupees: a better chance of winning projects (about 5 %), trust with the Bank, Employee well-being.
 
 ## 3a. Why the earlier numbers were replaced
 The earlier version of this file valued only leak loss (₹417 per seat per month) and found a ratio of 2.3 against a cost of ₹183. Course guidance is that a customer expects to gain **3 to 4 times** what it pays, because switching carries a risk. The earlier numbers did not meet that. The model below does.

@@ -29,6 +29,7 @@ Framing: an internal security tool for a bank. The ask is a funded pilot, and th
 ## Slide 4 – The business (3 min)
 - Who pays: the Service Company, which can show the Bank a working control and offer work from home to Employees on critical projects. The Bank asks for it.
 - Price: ₹ 500 per seat per month. The customer gains about ₹ 1,875 per seat per month (threat about 56 %, retention about 44 %). That is about 3.75 times what it pays (assumptions, to be measured in the pilot).
+- Extra benefit, not counted in the price: about a 5 % better chance for the Service Company to win projects from financial institutions, because it can show a working control (estimate, to be checked in the pilot).
 - 100 seats: the customer gains about ₹ 22.5 lakh a year and pays ₹ 6 lakh. We earn about ₹ 4.8 lakh a year after running costs and recover the ₹ 1.5 lakh build cost in about 4 months.
 - No cloud or token cost: runs on the laptop.
 - V1: 8 weeks to a go/no-go. V2: protected application chosen by IT, multi-monitor. V3: Bank VDI integration, sale to more Service Companies.
