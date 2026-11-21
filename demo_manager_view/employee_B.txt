@@ -1,0 +1,168 @@
+2026-11-12 00:03:49 | Phone detected - screen covered
+2026-11-12 00:03:49 | Screen cover removed
+2026-11-12 00:03:55 | Phone detected - screen covered
+2026-11-12 00:03:58 | Screen cover removed
+2026-11-12 00:05:51 | Phone detected - screen covered
+2026-11-12 00:05:54 | Screen cover removed
+2026-11-12 00:05:56 | Phone detected - screen covered
+2026-11-12 00:05:59 | Screen cover removed
+2026-11-12 00:06:15 | Phone detected - screen covered
+2026-11-12 00:06:17 | Screen cover removed
+2026-11-12 00:06:19 | Phone detected - screen covered
+2026-11-12 00:06:21 | Screen cover removed
+2026-11-12 00:06:23 | Phone detected - screen covered
+2026-11-12 00:06:26 | Screen cover removed
+2026-11-12 00:24:19 | Phone detected - screen covered
+2026-11-12 00:24:20 | Screen cover removed
+2026-11-12 00:24:25 | Phone detected - screen covered
+2026-11-12 00:24:26 | Screen cover removed
+2026-11-12 00:24:26 | Phone detected - screen covered
+2026-11-12 00:24:29 | Screen cover removed
+2026-11-12 00:25:00 | Phone detected - screen covered
+2026-11-12 00:25:10 | Screen cover removed
+2026-11-12 00:25:12 | Phone detected - screen covered
+2026-11-12 00:25:17 | Screen cover removed
+2026-11-12 00:39:44 | Phone detected - screen covered
+2026-11-12 00:39:53 | Screen cover removed
+2026-11-12 00:39:56 | Phone detected - screen covered
+2026-11-12 00:40:03 | Screen cover removed
+2026-11-12 00:40:05 | Phone detected - screen covered
+2026-11-12 00:40:09 | Screen cover removed
+2026-11-12 00:40:13 | Phone detected - screen covered
+2026-11-12 00:40:14 | Screen cover removed
+2026-11-12 00:40:15 | Phone detected - screen covered
+2026-11-12 00:40:16 | Screen cover removed
+2026-11-12 00:40:17 | Phone detected - screen covered
+2026-11-12 00:40:27 | Screen cover removed
+2026-11-12 00:40:29 | Phone detected - screen covered
+2026-11-12 00:40:33 | Screen cover removed
+2026-11-12 00:40:37 | Phone detected - screen covered
+2026-11-12 00:40:48 | Screen cover removed
+2026-11-12 00:40:50 | Phone detected - screen covered
+2026-11-12 00:40:51 | Screen cover removed
+2026-11-12 07:18:18 | Phone detected - screen covered
+2026-11-12 07:18:29 | Screen cover removed
+2026-11-12 07:19:36 | Phone detected - screen covered
+2026-11-12 07:19:39 | Screen cover removed
+2026-11-12 07:19:54 | Phone detected - screen covered
+2026-11-12 07:20:01 | Screen cover removed
+2026-11-12 07:20:03 | Phone detected - screen covered
+2026-11-12 07:20:08 | Screen cover removed
+2026-11-13 21:13:50 | Phone detected - screen covered
+2026-11-13 21:13:53 | Screen cover removed
+2026-11-13 21:13:56 | Phone detected - screen covered
+2026-11-13 21:14:06 | Screen cover removed
+2026-11-13 21:14:08 | Phone detected - screen covered
+2026-11-13 21:14:11 | Screen cover removed
+2026-11-13 21:14:14 | Phone detected - screen covered
+2026-11-13 21:14:16 | Screen cover removed
+2026-11-13 21:14:56 | No person detected for 30 seconds - SecureDesk closed and workstation locked
+2026-11-13 21:31:26 | No person detected for 15 seconds - SecureDesk closed and workstation locked
+2026-11-13 21:48:29 | Phone detected - screen covered
+2026-11-13 21:48:32 | Screen cover removed
+2026-11-13 21:48:35 | Phone detected - screen covered
+2026-11-13 21:48:42 | Screen cover removed
+2026-11-13 21:48:57 | Phone detected - screen covered
+2026-11-13 21:49:10 | Screen cover removed
+2026-11-13 21:49:23 | Phone detected - screen covered
+2026-11-13 21:49:24 | Screen cover removed
+2026-11-13 21:49:25 | Phone detected - screen covered
+2026-11-13 21:49:26 | Screen cover removed
+2026-11-13 21:49:29 | Phone detected - screen covered
+2026-11-13 21:49:39 | Screen cover removed
+2026-11-13 23:27:02 | Phone detected - screen covered
+2026-11-13 23:27:05 | Screen cover removed
+2026-11-13 23:27:08 | Phone detected - screen covered
+2026-11-13 23:27:11 | Screen cover removed
+2026-11-13 23:27:15 | Phone detected - screen covered
+2026-11-13 23:27:18 | Screen cover removed
+2026-11-13 23:27:48 | Phone detected - screen covered
+2026-11-13 23:27:48 | Screen cover removed
+2026-11-13 23:27:50 | Phone detected - screen covered
+2026-11-13 23:27:55 | Screen cover removed
+2026-11-13 23:27:57 | Phone detected - screen covered
+2026-11-13 23:27:59 | Screen cover removed
+2026-11-13 23:28:02 | Phone detected - screen covered
+2026-11-13 23:28:05 | Screen cover removed
+2026-11-13 23:28:13 | Phone detected - screen covered
+2026-11-13 23:28:16 | Screen cover removed
+2026-11-13 23:29:02 | No person detected for 10 seconds - SecureDesk closed and workstation locked
+2026-11-14 08:44:52 | Phone detected - screen covered
+2026-11-14 08:44:53 | Screen cover removed
+2026-11-14 08:44:58 | Phone detected - screen covered
+2026-11-14 08:44:59 | Screen cover removed
+2026-11-14 08:45:13 | No person detected for 10 seconds - SecureDesk closed and workstation locked
+2026-11-14 09:29:20 | Phone detected - screen covered
+2026-11-14 09:29:23 | Screen cover removed
+2026-11-14 09:29:38 | Phone detected - screen covered
+2026-11-14 09:29:47 | Screen cover removed
+2026-11-14 10:46:24 | Phone detected - screen covered
+2026-11-14 10:46:25 | Screen cover removed
+2026-11-14 10:46:26 | Phone detected - screen covered
+2026-11-14 10:46:28 | Screen cover removed
+2026-11-14 10:46:39 | Phone detected - screen covered
+2026-11-14 10:46:43 | Screen cover removed
+2026-11-14 10:46:45 | Phone detected - screen covered
+2026-11-14 10:46:46 | Screen cover removed
+2026-11-14 10:46:48 | Phone detected - screen covered
+2026-11-14 10:46:51 | Screen cover removed
+2026-11-14 10:46:58 | Phone detected - screen covered
+2026-11-14 10:47:05 | Screen cover removed
+2026-11-14 10:47:18 | Phone detected - screen covered
+2026-11-14 10:47:23 | Screen cover removed
+2026-11-14 10:47:30 | Phone detected - screen covered
+2026-11-14 10:47:34 | Screen cover removed
+2026-11-14 10:47:35 | Phone detected - screen covered
+2026-11-14 10:47:43 | Screen cover removed
+2026-11-14 10:47:46 | Phone detected - screen covered
+2026-11-14 10:47:50 | Screen cover removed
+2026-11-14 10:47:57 | Phone detected - screen covered
+2026-11-14 10:48:03 | Screen cover removed
+2026-11-14 10:48:05 | Phone detected - screen covered
+2026-11-14 10:48:07 | Screen cover removed
+2026-11-14 10:48:17 | Phone detected - screen covered
+2026-11-14 10:48:19 | Screen cover removed
+2026-11-14 10:48:27 | Phone detected - screen covered
+2026-11-14 10:48:32 | Screen cover removed
+2026-11-14 10:49:58 | Phone detected - screen covered
+2026-11-14 10:50:02 | Screen cover removed
+2026-11-14 10:50:03 | Phone detected - screen covered
+2026-11-14 10:50:10 | Screen cover removed
+2026-11-14 10:50:15 | Phone detected - screen covered
+2026-11-14 10:50:16 | Screen cover removed
+2026-11-14 10:50:28 | Phone detected - screen covered
+2026-11-14 10:50:29 | Screen cover removed
+2026-11-14 10:50:30 | Phone detected - screen covered
+2026-11-14 10:50:34 | Screen cover removed
+2026-11-14 10:50:48 | Phone detected - screen covered
+2026-11-14 10:50:55 | Screen cover removed
+2026-11-14 10:51:01 | Phone detected - screen covered
+2026-11-14 10:51:03 | Screen cover removed
+2026-11-14 10:51:10 | Phone detected - screen covered
+2026-11-14 10:51:13 | Screen cover removed
+2026-11-14 10:51:24 | Phone detected - screen covered
+2026-11-14 10:51:27 | Screen cover removed
+2026-11-14 10:51:37 | Phone detected - screen covered
+2026-11-14 10:51:40 | Screen cover removed
+2026-11-14 10:52:05 | Phone detected - screen covered
+2026-11-14 10:52:08 | Screen cover removed
+2026-11-14 10:52:16 | Phone detected - screen covered
+2026-11-14 10:52:24 | Screen cover removed
+2026-11-14 10:52:33 | Phone detected - screen covered
+2026-11-14 10:52:38 | Screen cover removed
+2026-11-14 10:52:44 | Phone detected - screen covered
+2026-11-14 10:52:48 | Screen cover removed
+2026-11-15 18:05:38 | Phone detected - screen covered
+2026-11-15 18:05:43 | Screen cover removed
+2026-11-15 18:05:46 | Phone detected - screen covered
+2026-11-15 18:05:49 | Screen cover removed
+2026-11-15 18:05:51 | Phone detected - screen covered
+2026-11-15 18:05:53 | Screen cover removed
+2026-11-15 18:05:55 | Phone detected - screen covered
+2026-11-15 18:05:58 | Screen cover removed
+2026-11-15 18:06:00 | Phone detected - screen covered
+2026-11-15 18:06:03 | Screen cover removed
+2026-11-15 18:06:04 | Phone detected - screen covered
+2026-11-15 18:06:07 | Screen cover removed
+2026-11-15 18:06:08 | Phone detected - screen covered
+2026-11-15 18:06:11 | Screen cover removed

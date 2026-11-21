@@ -10,6 +10,9 @@ Team 020 – SessionGuard | Members: see `README.md`
 | Gitika Sharma | 2025MB26069 | UX and Consent Lead | `03` (screens, messages, consent text) |
 | MD Abdul Samadkhan | 2025MB26192 | Data, Privacy and Regulator Lead | `04` (data held, retention, regulator view, risks) |
 
+## Where the Git history is
+Most commits on `main` are uploads and README edits made from one team member's GitHub account. The prototype's own working history (7 commits by the Product Lead and 7 tags, including `v1.0-first-release` and `v1.1-privacy-fix`) is in the branch `prototype-history`.
+
 ## What the lead did
 Product idea and scope; the ethics and privacy rules; built and tested the prototype with AI tools; tuned the detection across 13 experiments; designed the consent flow, IP check, SecureDesk, screen cover, absence lock and log screen; made every decision recorded in `07` and `08`.
 

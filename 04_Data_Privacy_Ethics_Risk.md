@@ -56,7 +56,7 @@ What this does not prove: the probe sees Python-level attempts only, and real ne
 | Log every event (consent, network, start, stop) | No. Logging was first designed wide, then cut to incidents only | Less audit detail, much less data to defend |
 | Identify who is holding the phone | No | The product cannot say who |
 | Measure idle time or productivity | No | The product cannot be used to rank Employees |
-| Admin dashboard with Employee names | No | No central view in V1 |
+| Admin dashboard with Employee names | No | No central view in V1. A V3 mock-up and its storage design are in `12_Security_Reviewer_View_V3_Concept.md`; it would require a new consent text and Compliance Officer sign-off |
 
 The first logging design recorded consent, network and start/stop events. During review the team asked for "minimal, only blur incidents" and the design was cut back. This is a worked example of minimisation by decision, not by statement.
 

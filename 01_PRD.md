@@ -40,7 +40,7 @@ SessionGuard starts a protected application only after the Employee gives consen
 - Real network detection with IT. The IP list simulates it.
 - Face recognition, identity, recording, any stored image.
 - Multi-monitor, Mac, Linux, mobile.
-- Central dashboard for managers.
+- Central dashboard for managers. (A mock-up screen exists only as a V3 concept: see `12_Security_Reviewer_View_V3_Concept.md`. It is not part of the product.)
 - IT-selectable protected application (built, tested and reverted; moved to V2).
 - Hand-over applications that start a helper process and exit (some browsers, store apps).
 - A camera read that hangs instead of failing (not caught in V1).
@@ -108,7 +108,7 @@ Python 3.11, Tkinter, OpenCV, Ultralytics YOLO. Files and set-up: `prototype/REA
 | 4 Decide | 8 | Go / no-go against section 12 |
 
 **V2 (sketch):** IT-selectable protected application; hand-over application handling; multi-monitor; log retention enforced by code; model tuning on pilot laptops.
-**V3 (sketch):** VDI integration; real network detection with the bank's network team; counts-only report for the Security Reviewer; optional offer to other banks.
+**V3 (sketch):** VDI integration; real network detection with the bank's network team; counts-only report for the Security Reviewer (mock-up and storage design in `12_Security_Reviewer_View_V3_Concept.md`); optional offer to other banks.
 
 ## 12. Go / no-go for the pilot
 Go if all hold: catch rate ≥ 90 %, false cover ≤ 1 per 10 minutes, images stored = 0, decline test 5 of 5, Compliance Officer signs the consent text. Otherwise: fix, re-measure. The results so far (section 8) are informal observations, so the first step of the pilot is the formal measurement. The look-alike TV remote and the start-up time on a laptop without a graphics card are the two points to watch.

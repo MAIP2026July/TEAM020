@@ -24,7 +24,7 @@ Files kept out of Git (listed in `.gitignore` at the top of the repository): `co
 2. Install the packages in `requirements.txt`.
 3. Copy `config.example.json` to `config.json`.
 4. Run `show_ip.py` and put your current public IP into `office_public_ips` to simulate being inside the office. Leave the list without your IP to simulate being outside.
-5. Place the model file `yolo11s.pt` next to `detection.py`. From V1.1 the library runs offline (`YOLO_OFFLINE=1`) and cannot download it. If you do not have the file, download it once on any machine and copy it in. It is not in Git.
+5. Place the model file `yolo11s.pt` next to `detection.py`. From V1.1 the library runs offline (`YOLO_OFFLINE=1`) and cannot download it. If you do not have the file, download it once on any machine that is online and copy it in: run `python -c "from ultralytics import YOLO; YOLO('yolo11s.pt')"` there (the library fetches the official file from the Ultralytics releases), then copy `yolo11s.pt` next to `detection.py`. It is not in Git.
 6. Start with `guard.py`.
 
 ## Settings (`config.json`)

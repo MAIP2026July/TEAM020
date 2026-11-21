@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manager view - SAMPLE DATA</title>
+<style>
+  :root {
+    --bg: #f3f6f9;
+    --ink: #1f2933;
+    --muted: #52606d;
+    --card: #ffffff;
+    --line: #d5dde5;
+    --blue: #1e4e8c;
+    --blue-soft: #e3eefb;
+    --teal: #0f766e;
+    --teal-soft: #e0f2f1;
+    --amber: #92400e;
+    --amber-soft: #fef3c7;
+    --amber-line: #f59e0b;
+    --slate: #475569;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: clamp(17px, 1.35vw, 26px); }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Segoe UI", Arial, sans-serif; line-height: 1.4; }
+
+  .banner { background: var(--blue); color: #ffffff; font-size: 1.35rem; font-weight: 700; padding: 0.7rem 1.2rem; text-align: center; }
+  .subbanner { background: var(--blue-soft); color: #173a6a; font-size: 1.15rem; padding: 0.5rem 1.2rem; text-align: center; border-bottom: 1px solid #c7dcf5; }
+  main { max-width: 1500px; margin: 0 auto; padding: 1.2rem 1.5rem 3rem; }
+  h2 { font-size: 1.5rem; margin: 1.6rem 0 0.4rem; color: #1b3a5c; }
+  .hint { margin: 0 0 0.7rem; color: var(--muted); font-size: 1rem; }
+  .note { margin: 0.6rem 0 0; color: var(--muted); font-size: 0.95rem; }
+
+  .boxes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .box { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; }
+  .box .num { font-size: 2.9rem; font-weight: 700; line-height: 1.1; color: #1b3a5c; }
+  .box .label { font-size: 1.1rem; color: var(--muted); }
+  .box .sub { font-size: 0.9rem; color: var(--muted); margin-top: 0.2rem; min-height: 1.2em; }
+  .box.review .num { color: var(--amber); }
+
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); }
+  th, td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: #eaf0f6; color: #33475b; font-size: 1rem; }
+  th.c, td.num { text-align: center; }
+  td.num { font-size: 1.6rem; font-weight: 600; }
+  td.time { font-size: 1.05rem; white-space: nowrap; }
+  tbody tr { cursor: pointer; }
+  tbody tr:hover { background: #f7fafc; }
+  tbody tr.selected { background: #f0f7ff; outline: 3px solid #7aa7d9; outline-offset: -3px; }
+  .who { font-size: 1.3rem; font-weight: 700; }
+  .tag { display: block; font-size: 0.9rem; font-weight: 400; color: var(--muted); margin-top: 0.15rem; }
+  .tag.variation { color: #3b4a5a; font-weight: 600; }
+
+  .badge { display: inline-block; padding: 0.2rem 0.75rem; border-radius: 999px; font-weight: 700; font-size: 1.05rem; }
+  .badge.review { background: var(--amber-soft); color: var(--amber); border: 2px solid var(--amber-line); }
+  .badge.done { background: var(--teal-soft); color: #115e59; border: 2px solid #5eead4; }
+  .badge.clear { background: #eef2f6; color: var(--muted); border: 2px solid #cbd5e1; }
+  .reasons { margin: 0.5rem 0 0; padding-left: 1.15rem; font-size: 1rem; color: #3b4a5a; }
+  .reasons li { margin: 0.15rem 0; }
+  .actions { margin-top: 0.6rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  button, select { font: inherit; }
+  .actions button { background: #ffffff; color: var(--blue); border: 2px solid #8fb2dc; border-radius: 8px; padding: 0.3rem 0.8rem; cursor: pointer; font-size: 0.95rem; }
+  .actions button:hover { background: var(--blue-soft); }
+  .actions button[aria-pressed="true"] { background: var(--teal-soft); border-color: #5eead4; color: #115e59; font-weight: 700; }
+  button:focus-visible, select:focus-visible, tr:focus-visible { outline: 3px solid #7aa7d9; outline-offset: 2px; }
+
+  .two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 1.2rem; margin-top: 0.4rem; align-items: start; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 0.4rem 1.2rem 1.1rem; }
+  .card h2 { margin-top: 0.8rem; }
+  .filters { display: flex; gap: 1.2rem; flex-wrap: wrap; margin: 0.4rem 0 0.4rem; }
+  .filters label { font-size: 1rem; color: var(--muted); }
+  .filters select { margin-left: 0.4rem; padding: 0.3rem 0.5rem; border: 2px solid #8fb2dc; border-radius: 8px; background: #ffffff; color: var(--ink); }
+  .timeline { list-style: none; margin: 0; padding: 0; max-height: 26rem; overflow: auto; border-top: 1px solid var(--line); }
+  .timeline li { display: grid; grid-template-columns: 11.5rem 1fr; gap: 0.8rem; padding: 0.45rem 0.5rem 0.45rem 0.7rem; border-bottom: 1px solid #eef2f6; border-left: 5px solid transparent; font-size: 1.05rem; }
+  .timeline .when { font-variant-numeric: tabular-nums; color: #33475b; }
+  .timeline li.t-covered { border-left-color: #5b8fd1; }
+  .timeline li.t-removed { border-left-color: #b8c4d0; color: var(--muted); }
+  .timeline li.t-locked { border-left-color: #2a9d8f; }
+  .timeline li.t-failed { border-left-color: var(--slate); font-weight: 700; }
+  .empty { color: var(--muted); padding: 0.8rem 0.2rem; }
+  .timeline li.empty { display: block; border-left-color: transparent; }
+
+  .rules ol { margin: 0.3rem 0 0.6rem; padding-left: 1.3rem; }
+  .rules li { margin: 0.45rem 0; }
+  .rules .fine { color: var(--muted); font-size: 0.95rem; }
+  .unrec ul { margin: 0.3rem 0 0; padding-left: 1.2rem; }
+  .unrec code { background: #eef2f6; padding: 0.1rem 0.4rem; border-radius: 4px; }
+  .footer { margin-top: 1.6rem; color: var(--muted); font-size: 0.95rem; text-align: center; }
+
+  @media (max-width: 1100px) {
+    .boxes { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">SAMPLE DATA - one real log, copied for 3 employees. Not real people.</div>
+<div class="subbanner">A flag is a pattern, not proof. A person decides.</div>
+
+<main>
+  <section class="boxes" aria-label="Summary">
+    <div class="box"><div class="num" id="sum-covers">0</div><div class="label">Total phone covers</div></div>
+    <div class="box"><div class="num" id="sum-absence">0</div><div class="label">Total absence locks</div></div>
+    <div class="box"><div class="num" id="sum-failed">0</div><div class="label">Total failed locks</div></div>
+    <div class="box review"><div class="num" id="sum-review">0</div><div class="label">Employees needing review</div><div class="sub" id="sum-review-sub"></div></div>
+  </section>
+
+  <section aria-label="Employees">
+    <h2>Employees</h2>
+    <p class="hint">Click a row to see that employee's timeline.</p>
+    <table id="employees">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th class="c">Phone covers</th>
+          <th class="c">Absence locks</th>
+          <th class="c">Failed locks</th>
+          <th>Last event time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p class="note">Absence locks count every line that starts "No person detected for" (locked and failed together). Failed locks are the lines that end "workstation lock FAILED".</p>
+  </section>
+
+  <div class="two-col">
+    <section class="card" aria-label="Timeline">
+      <h2 id="timeline-title">Timeline</h2>
+      <div class="filters">
+        <label>Event type <select id="filter-type"></select></label>
+        <label>Day <select id="filter-day"></select></label>
+      </div>
+      <p class="hint" id="timeline-count"></p>
+      <ul class="timeline" id="timeline"></ul>
+      <p class="note">Filters change the timeline only. The table above always counts every event.</p>
+    </section>
+
+    <aside class="card rules" aria-label="Review rules">
+      <h2>Review rules</h2>
+      <ol id="rules-list"></ol>
+      <p class="fine" id="rules-fine"></p>
+    </aside>
+  </div>
+
+  <section class="card unrec" aria-label="Unrecognised lines">
+    <h2>Unrecognised lines</h2>
+    <div id="unrec-body"></div>
+  </section>
+
+  <p class="footer">Everything on this page is worked out in your browser from the text embedded in this file. Nothing is saved or sent anywhere.</p>
+</main>
+
+<script type="text/plain" id="log-employee_A">2026-11-11 23:56:49 | Phone detected - screen covered
+2026-11-11 23:56:49 | Screen cover removed
+2026-11-11 23:56:55 | Phone detected - screen covered
+2026-11-11 23:56:58 | Screen cover removed
+2026-11-11 23:58:51 | Phone detected - screen covered
+2026-11-11 23:58:54 | Screen cover removed
+2026-11-11 23:58:56 | Phone detected - screen covered
+2026-11-11 23:58:59 | Screen cover removed
+2026-11-11 23:59:15 | Phone detected - screen covered
+2026-11-11 23:59:17 | Screen cover removed
+2026-11-11 23:59:19 | Phone detected - screen covered
+2026-11-11 23:59:21 | Screen cover removed
+2026-11-11 23:59:23 | Phone detected - screen covered
+2026-11-11 23:59:26 | Screen cover removed
+2026-11-12 00:17:19 | Phone detected - screen covered
+2026-11-12 00:17:20 | Screen cover removed
+2026-11-12 00:17:25 | Phone detected - screen covered
+2026-11-12 00:17:26 | Screen cover removed
+2026-11-12 00:17:26 | Phone detected - screen covered
+2026-11-12 00:17:29 | Screen cover removed
+2026-11-12 00:18:00 | Phone detected - screen covered
+2026-11-12 00:18:10 | Screen cover removed
+2026-11-12 00:18:12 | Phone detected - screen covered
+2026-11-12 00:18:17 | Screen cover removed
+2026-11-12 00:32:44 | Phone detected - screen covered
+2026-11-12 00:32:53 | Screen cover removed
+2026-11-12 00:32:56 | Phone detected - screen covered
+2026-11-12 00:33:03 | Screen cover removed
+2026-11-12 00:33:05 | Phone detected - screen covered
+2026-11-12 00:33:09 | Screen cover removed
+2026-11-12 00:33:13 | Phone detected - screen covered
+2026-11-12 00:33:14 | Screen cover removed
+2026-11-12 00:33:15 | Phone detected - screen covered
+2026-11-12 00:33:16 | Screen cover removed
+2026-11-12 00:33:17 | Phone detected - screen covered
+2026-11-12 00:33:27 | Screen cover removed
+2026-11-12 00:33:29 | Phone detected - screen covered
+2026-11-12 00:33:33 | Screen cover removed
+2026-11-12 00:33:37 | Phone detected - screen covered
+2026-11-12 00:33:48 | Screen cover removed
+2026-11-12 00:33:50 | Phone detected - screen covered
+2026-11-12 00:33:51 | Screen cover removed
+2026-11-12 07:11:18 | Phone detected - screen covered
+2026-11-12 07:11:29 | Screen cover removed
+2026-11-12 07:12:36 | Phone detected - screen covered
+2026-11-12 07:12:39 | Screen cover removed
+2026-11-12 07:12:54 | Phone detected - screen covered
+2026-11-12 07:13:01 | Screen cover removed
+2026-11-12 07:13:03 | Phone detected - screen covered
+2026-11-12 07:13:08 | Screen cover removed
+2026-11-13 21:06:50 | Phone detected - screen covered
+2026-11-13 21:06:53 | Screen cover removed
+2026-11-13 21:06:56 | Phone detected - screen covered
+2026-11-13 21:07:06 | Screen cover removed
+2026-11-13 21:07:08 | Phone detected - screen covered
+2026-11-13 21:07:11 | Screen cover removed
+2026-11-13 21:07:14 | Phone detected - screen covered
+2026-11-13 21:07:16 | Screen cover removed
+2026-11-13 21:07:56 | No person detected for 30 seconds - SecureDesk closed and workstation locked
+2026-11-13 21:24:26 | No person detected for 15 seconds - SecureDesk closed and workstation locked
+2026-11-13 21:41:29 | Phone detected - screen covered
+2026-11-13 21:41:32 | Screen cover removed
+2026-11-13 21:41:35 | Phone detected - screen covered
+2026-11-13 21:41:42 | Screen cover removed
+2026-11-13 21:41:57 | Phone detected - screen covered
+2026-11-13 21:42:10 | Screen cover removed
+2026-11-13 21:42:23 | Phone detected - screen covered
+2026-11-13 21:42:24 | Screen cover removed
+2026-11-13 21:42:25 | Phone detected - screen covered
+2026-11-13 21:42:26 | Screen cover removed
+2026-11-13 21:42:29 | Phone detected - screen covered
+2026-11-13 21:42:39 | Screen cover removed
+2026-11-13 23:20:02 | Phone detected - screen covered
+2026-11-13 23:20:05 | Screen cover removed
+2026-11-13 23:20:08 | Phone detected - screen covered
+2026-11-13 23:20:11 | Screen cover removed
+2026-11-13 23:20:15 | Phone detected - screen covered
+2026-11-13 23:20:18 | Screen cover removed
+2026-11-13 23:20:48 | Phone detected - screen covered
+2026-11-13 23:20:48 | Screen cover removed
+2026-11-13 23:20:50 | Phone detected - screen covered
+2026-11-13 23:20:55 | Screen cover removed
+2026-11-13 23:20:57 | Phone detected - screen covered
+2026-11-13 23:20:59 | Screen cover removed
+2026-11-13 23:21:02 | Phone detected - screen covered
+2026-11-13 23:21:05 | Screen cover removed
+2026-11-13 23:21:13 | Phone detected - screen covered
+2026-11-13 23:21:16 | Screen cover removed
+2026-11-13 23:22:02 | No person detected for 10 seconds - SecureDesk closed and workstation locked
+2026-11-14 08:37:52 | Phone detected - screen covered
+2026-11-14 08:37:53 | Screen cover removed
+2026-11-14 08:37:58 | Phone detected - screen covered
+2026-11-14 08:37:59 | Screen cover removed
+2026-11-14 08:38:13 | No person detected for 10 seconds - SecureDesk closed and workstation locked
+2026-11-14 09:22:20 | Phone detected - screen covered
+2026-11-14 09:22:23 | Screen cover removed
+2026-11-14 09:22:38 | Phone detected - screen covered
+2026-11-14 09:22:47 | Screen cover removed
+2026-11-14 10:39:24 | Phone detected - screen covered
+2026-11-14 10:39:25 | Screen cover removed
+2026-11-14 10:39:26 | Phone detected - screen covered
+2026-11-14 10:39:28 | Screen cover removed
+2026-11-14 10:39:39 | Phone detected - screen covered
+2026-11-14 10:39:43 | Screen cover removed
+2026-11-14 10:39:45 | Phone detected - screen covered
+2026-11-14 10:39:46 | Screen cover removed
+2026-11-14 10:39:48 | Phone detected - screen covered
+2026-11-14 10:39:51 | Screen cover removed
+2026-11-14 10:39:58 | Phone detected - screen covered
+2026-11-14 10:40:05 | Screen cover removed
+2026-11-14 10:40:18 | Phone detected - screen covered
+2026-11-14 10:40:23 | Screen cover removed
+2026-11-14 10:40:30 | Phone detected - screen covered
+2026-11-14 10:40:34 | Screen cover removed
+2026-11-14 10:40:35 | Phone detected - screen covered
+2026-11-14 10:40:43 | Screen cover removed
+2026-11-14 10:40:46 | Phone detected - screen covered
+2026-11-14 10:40:50 | Screen cover removed
+2026-11-14 10:40:57 | Phone detected - screen covered
+2026-11-14 10:41:03 | Screen cover removed
+2026-11-14 10:41:05 | Phone detected - screen covered
+2026-11-14 10:41:07 | Screen cover removed
+2026-11-14 10:41:17 | Phone detected - screen covered
+2026-11-14 10:41:19 | Screen cover removed
+2026-11-14 10:41:27 | Phone detected - screen covered
+2026-11-14 10:41:32 | Screen cover removed
+2026-11-14 10:42:58 | Phone detected - screen covered
+2026-11-14 10:43:02 | Screen cover removed
+2026-11-14 10:43:03 | Phone detected - screen covered
+2026-11-14 10:43:10 | Screen cover removed
+2026-11-14 10:43:15 | Phone detected - screen covered
+2026-11-14 10:43:16 | Screen cover removed
+2026-11-14 10:43:28 | Phone detected - screen covered
+2026-11-14 10:43:29 | Screen cover removed
+2026-11-14 10:43:30 | Phone detected - screen covered
+2026-11-14 10:43:34 | Screen cover removed
+2026-11-14 10:43:48 | Phone detected - screen covered
+2026-11-14 10:43:55 | Screen cover removed
+2026-11-14 10:44:01 | Phone detected - screen covered
+2026-11-14 10:44:03 | Screen cover removed
+2026-11-14 10:44:10 | Phone detected - screen covered
+2026-11-14 10:44:13 | Screen cover removed
+2026-11-14 10:44:24 | Phone detected - screen covered
+2026-11-14 10:44:27 | Screen cover removed
+2026-11-14 10:44:37 | Phone detected - screen covered
+2026-11-14 10:44:40 | Screen cover removed
+2026-11-14 10:45:05 | Phone detected - screen covered
+2026-11-14 10:45:08 | Screen cover removed
+2026-11-14 10:45:16 | Phone detected - screen covered
+2026-11-14 10:45:24 | Screen cover removed
+2026-11-14 10:45:33 | Phone detected - screen covered
+2026-11-14 10:45:38 | Screen cover removed
+2026-11-14 10:45:44 | Phone detected - screen covered
+2026-11-14 10:45:48 | Screen cover removed
+2026-11-15 17:58:38 | Phone detected - screen covered
+2026-11-15 17:58:43 | Screen cover removed
+2026-11-15 17:58:46 | Phone detected - screen covered
+2026-11-15 17:58:49 | Screen cover removed
+2026-11-15 17:58:51 | Phone detected - screen covered
+2026-11-15 17:58:53 | Screen cover removed
+2026-11-15 17:58:55 | Phone detected - screen covered
+2026-11-15 17:58:58 | Screen cover removed
+2026-11-15 17:59:00 | Phone detected - screen covered
+2026-11-15 17:59:03 | Screen cover removed
+2026-11-15 17:59:04 | Phone detected - screen covered
+2026-11-15 17:59:07 | Screen cover removed
+2026-11-15 17:59:08 | Phone detected - screen covered
+2026-11-15 17:59:11 | Screen cover removed
+</script>
+<script type="text/plain" id="log-employee_B">2026-11-12 00:03:49 | Phone detected - screen covered
+2026-11-12 00:03:49 | Screen cover removed
+2026-11-12 00:03:55 | Phone detected - screen covered
+2026-11-12 00:03:58 | Screen cover removed
+2026-11-12 00:05:51 | Phone detected - screen covered
+2026-11-12 00:05:54 | Screen cover removed
+2026-11-12 00:05:56 | Phone detected - screen covered
+2026-11-12 00:05:59 | Screen cover removed
+2026-11-12 00:06:15 | Phone detected - screen covered
+2026-11-12 00:06:17 | Screen cover removed
+2026-11-12 00:06:19 | Phone detected - screen covered
+2026-11-12 00:06:21 | Screen cover removed
+2026-11-12 00:06:23 | Phone detected - screen covered
+2026-11-12 00:06:26 | Screen cover removed
+2026-11-12 00:24:19 | Phone detected - screen covered
+2026-11-12 00:24:20 | Screen cover removed
+2026-11-12 00:24:25 | Phone detected - screen covered
+2026-11-12 00:24:26 | Screen cover removed
+2026-11-12 00:24:26 | Phone detected - screen covered
+2026-11-12 00:24:29 | Screen cover removed
+2026-11-12 00:25:00 | Phone detected - screen covered
+2026-11-12 00:25:10 | Screen cover removed
+2026-11-12 00:25:12 | Phone detected - screen covered
+2026-11-12 00:25:17 | Screen cover removed
+2026-11-12 00:39:44 | Phone detected - screen covered
+2026-11-12 00:39:53 | Screen cover removed
+2026-11-12 00:39:56 | Phone detected - screen covered
+2026-11-12 00:40:03 | Screen cover removed
+2026-11-12 00:40:05 | Phone detected - screen covered
+2026-11-12 00:40:09 | Screen cover removed
+2026-11-12 00:40:13 | Phone detected - screen covered
+2026-11-12 00:40:14 | Screen cover removed
+2026-11-12 00:40:15 | Phone detected - screen covered
+2026-11-12 00:40:16 | Screen cover removed
+2026-11-12 00:40:17 | Phone detected - screen covered
+2026-11-12 00:40:27 | Screen cover removed
+2026-11-12 00:40:29 | Phone detected - screen covered
+2026-11-12 00:40:33 | Screen cover removed
+2026-11-12 00:40:37 | Phone detected - screen covered
+2026-11-12 00:40:48 | Screen cover removed
+2026-11-12 00:40:50 | Phone detected - screen covered
+2026-11-12 00:40:51 | Screen cover removed
+2026-11-12 07:18:18 | Phone detected - screen covered
+2026-11-12 07:18:29 | Screen cover removed
+2026-11-12 07:19:36 | Phone detected - screen covered
+2026-11-12 07:19:39 | Screen cover removed
+2026-11-12 07:19:54 | Phone detected - screen covered
+2026-11-12 07:20:01 | Screen cover removed
+2026-11-12 07:20:03 | Phone detected - screen covered
+2026-11-12 07:20:08 | Screen cover removed
+2026-11-13 21:13:50 | Phone detected - screen covered
+2026-11-13 21:13:53 | Screen cover removed
+2026-11-13 21:13:56 | Phone detected - screen covered
+2026-11-13 21:14:06 | Screen cover removed
+2026-11-13 21:14:08 | Phone detected - screen covered
+2026-11-13 21:14:11 | Screen cover removed
+2026-11-13 21:14:14 | Phone detected - screen covered
+2026-11-13 21:14:16 | Screen cover removed
+2026-11-13 21:14:56 | No person detected for 30 seconds - SecureDesk closed and workstation locked
+2026-11-13 21:31:26 | No person detected for 15 seconds - SecureDesk closed and workstation locked
+2026-11-13 21:48:29 | Phone detected - screen covered
+2026-11-13 21:48:32 | Screen cover removed
+2026-11-13 21:48:35 | Phone detected - screen covered
+2026-11-13 21:48:42 | Screen cover removed
+2026-11-13 21:48:57 | Phone detected - screen covered
+2026-11-13 21:49:10 | Screen cover removed
+2026-11-13 21:49:23 | Phone detected - screen covered
+2026-11-13 21:49:24 | Screen cover removed
+2026-11-13 21:49:25 | Phone detected - screen covered
+2026-11-13 21:49:26 | Screen cover removed
+2026-11-13 21:49:29 | Phone detected - screen covered
+2026-11-13 21:49:39 | Screen cover removed
+2026-11-13 23:27:02 | Phone detected - screen covered
+2026-11-13 23:27:05 | Screen cover removed
+2026-11-13 23:27:08 | Phone detected - screen covered
+2026-11-13 23:27:11 | Screen cover removed
+2026-11-13 23:27:15 | Phone detected - screen covered
+2026-11-13 23:27:18 | Screen cover removed
+2026-11-13 23:27:48 | Phone detected - screen covered
+2026-11-13 23:27:48 | Screen cover removed
+2026-11-13 23:27:50 | Phone detected - screen covered
+2026-11-13 23:27:55 | Screen cover removed
+2026-11-13 23:27:57 | Phone detected - screen covered
+2026-11-13 23:27:59 | Screen cover removed
+2026-11-13 23:28:02 | Phone detected - screen covered
+2026-11-13 23:28:05 | Screen cover removed
+2026-11-13 23:28:13 | Phone detected - screen covered
+2026-11-13 23:28:16 | Screen cover removed
+2026-11-13 23:29:02 | No person detected for 10 seconds - SecureDesk closed and workstation locked
+2026-11-14 08:44:52 | Phone detected - screen covered
+2026-11-14 08:44:53 | Screen cover removed
+2026-11-14 08:44:58 | Phone detected - screen covered
+2026-11-14 08:44:59 | Screen cover removed
+2026-11-14 08:45:13 | No person detected for 10 seconds - SecureDesk closed and workstation locked
+2026-11-14 09:29:20 | Phone detected - screen covered
+2026-11-14 09:29:23 | Screen cover removed
+2026-11-14 09:29:38 | Phone detected - screen covered
+2026-11-14 09:29:47 | Screen cover removed
+2026-11-14 10:46:24 | Phone detected - screen covered
+2026-11-14 10:46:25 | Screen cover removed
+2026-11-14 10:46:26 | Phone detected - screen covered
+2026-11-14 10:46:28 | Screen cover removed
+2026-11-14 10:46:39 | Phone detected - screen covered
+2026-11-14 10:46:43 | Screen cover removed
+2026-11-14 10:46:45 | Phone detected - screen covered
+2026-11-14 10:46:46 | Screen cover removed
+2026-11-14 10:46:48 | Phone detected - screen covered
+2026-11-14 10:46:51 | Screen cover removed
+2026-11-14 10:46:58 | Phone detected - screen covered
+2026-11-14 10:47:05 | Screen cover removed
+2026-11-14 10:47:18 | Phone detected - screen covered
+2026-11-14 10:47:23 | Screen cover removed
+2026-11-14 10:47:30 | Phone detected - screen covered
+2026-11-14 10:47:34 | Screen cover removed
+2026-11-14 10:47:35 | Phone detected - screen covered
+2026-11-14 10:47:43 | Screen cover removed
+2026-11-14 10:47:46 | Phone detected - screen covered
+2026-11-14 10:47:50 | Screen cover removed
+2026-11-14 10:47:57 | Phone detected - screen covered
+2026-11-14 10:48:03 | Screen cover removed
+2026-11-14 10:48:05 | Phone detected - screen covered
+2026-11-14 10:48:07 | Screen cover removed
+2026-11-14 10:48:17 | Phone detected - screen covered
+2026-11-14 10:48:19 | Screen cover removed
+2026-11-14 10:48:27 | Phone detected - screen covered
+2026-11-14 10:48:32 | Screen cover removed
+2026-11-14 10:49:58 | Phone detected - screen covered
+2026-11-14 10:50:02 | Screen cover removed
+2026-11-14 10:50:03 | Phone detected - screen covered
+2026-11-14 10:50:10 | Screen cover removed
+2026-11-14 10:50:15 | Phone detected - screen covered
+2026-11-14 10:50:16 | Screen cover removed
+2026-11-14 10:50:28 | Phone detected - screen covered
+2026-11-14 10:50:29 | Screen cover removed
+2026-11-14 10:50:30 | Phone detected - screen covered
+2026-11-14 10:50:34 | Screen cover removed
+2026-11-14 10:50:48 | Phone detected - screen covered
+2026-11-14 10:50:55 | Screen cover removed
+2026-11-14 10:51:01 | Phone detected - screen covered
+2026-11-14 10:51:03 | Screen cover removed
+2026-11-14 10:51:10 | Phone detected - screen covered
+2026-11-14 10:51:13 | Screen cover removed
+2026-11-14 10:51:24 | Phone detected - screen covered
+2026-11-14 10:51:27 | Screen cover removed
+2026-11-14 10:51:37 | Phone detected - screen covered
+2026-11-14 10:51:40 | Screen cover removed
+2026-11-14 10:52:05 | Phone detected - screen covered
+2026-11-14 10:52:08 | Screen cover removed
+2026-11-14 10:52:16 | Phone detected - screen covered
+2026-11-14 10:52:24 | Screen cover removed
+2026-11-14 10:52:33 | Phone detected - screen covered
+2026-11-14 10:52:38 | Screen cover removed
+2026-11-14 10:52:44 | Phone detected - screen covered
+2026-11-14 10:52:48 | Screen cover removed
+2026-11-15 18:05:38 | Phone detected - screen covered
+2026-11-15 18:05:43 | Screen cover removed
+2026-11-15 18:05:46 | Phone detected - screen covered
+2026-11-15 18:05:49 | Screen cover removed
+2026-11-15 18:05:51 | Phone detected - screen covered
+2026-11-15 18:05:53 | Screen cover removed
+2026-11-15 18:05:55 | Phone detected - screen covered
+2026-11-15 18:05:58 | Screen cover removed
+2026-11-15 18:06:00 | Phone detected - screen covered
+2026-11-15 18:06:03 | Screen cover removed
+2026-11-15 18:06:04 | Phone detected - screen covered
+2026-11-15 18:06:07 | Screen cover removed
+2026-11-15 18:06:08 | Phone detected - screen covered
+2026-11-15 18:06:11 | Screen cover removed
+</script>
+<script type="text/plain" id="log-employee_C">2026-11-11 23:56:49 | Phone detected - screen covered
+2026-11-11 23:56:49 | Screen cover removed
+2026-11-11 23:56:55 | Phone detected - screen covered
+2026-11-11 23:56:58 | Screen cover removed
+2026-11-11 23:58:51 | Phone detected - screen covered
+2026-11-11 23:58:54 | Screen cover removed
+2026-11-11 23:58:56 | Phone detected - screen covered
+2026-11-11 23:58:59 | Screen cover removed
+2026-11-11 23:59:15 | Phone detected - screen covered
+2026-11-11 23:59:17 | Screen cover removed
+2026-11-11 23:59:19 | Phone detected - screen covered
+2026-11-11 23:59:21 | Screen cover removed
+2026-11-11 23:59:23 | Phone detected - screen covered
+2026-11-11 23:59:26 | Screen cover removed
+2026-11-12 00:17:19 | Phone detected - screen covered
+2026-11-12 00:17:20 | Screen cover removed
+2026-11-12 00:17:25 | Phone detected - screen covered
+2026-11-12 00:17:26 | Screen cover removed
+2026-11-12 00:17:26 | Phone detected - screen covered
+2026-11-12 00:17:29 | Screen cover removed
+2026-11-12 00:18:00 | Phone detected - screen covered
+2026-11-12 00:18:10 | Screen cover removed
+2026-11-12 00:18:12 | Phone detected - screen covered
+2026-11-12 00:18:17 | Screen cover removed
+2026-11-12 00:32:44 | Phone detected - screen covered
+2026-11-12 00:32:53 | Screen cover removed
+2026-11-12 00:32:56 | Phone detected - screen covered
+2026-11-12 00:33:03 | Screen cover removed
+2026-11-12 00:33:05 | Phone detected - screen covered
+2026-11-12 00:33:09 | Screen cover removed
+2026-11-12 00:33:13 | Phone detected - screen covered
+2026-11-12 00:33:14 | Screen cover removed
+2026-11-12 00:33:15 | Phone detected - screen covered
+2026-11-12 00:33:16 | Screen cover removed
+2026-11-12 00:33:17 | Phone detected - screen covered
+2026-11-12 00:33:27 | Screen cover removed
+2026-11-12 00:33:29 | Phone detected - screen covered
+2026-11-12 00:33:33 | Screen cover removed
+2026-11-12 00:33:37 | Phone detected - screen covered
+2026-11-12 00:33:48 | Screen cover removed
+2026-11-12 00:33:50 | Phone detected - screen covered
+2026-11-12 00:33:51 | Screen cover removed
+2026-11-12 07:11:18 | Phone detected - screen covered
+2026-11-12 07:11:29 | Screen cover removed
+2026-11-12 07:12:36 | Phone detected - screen covered
+2026-11-12 07:12:39 | Screen cover removed
+2026-11-12 07:12:54 | Phone detected - screen covered
+2026-11-12 07:13:01 | Screen cover removed
+2026-11-12 07:13:03 | Phone detected - screen covered
+2026-11-12 07:13:08 | Screen cover removed
+2026-11-13 21:06:50 | Phone detected - screen covered
+2026-11-13 21:06:53 | Screen cover removed
+2026-11-13 21:06:56 | Phone detected - screen covered
+2026-11-13 21:07:06 | Screen cover removed
+2026-11-13 21:07:08 | Phone detected - screen covered
+2026-11-13 21:07:11 | Screen cover removed
+2026-11-13 21:07:14 | Phone detected - screen covered
+2026-11-13 21:07:16 | Screen cover removed
+2026-11-13 21:07:56 | No person detected for 30 seconds - SecureDesk closed and workstation locked
+2026-11-13 21:24:26 | No person detected for 15 seconds - SecureDesk closed and workstation locked
+2026-11-13 21:41:29 | Phone detected - screen covered
+2026-11-13 21:41:32 | Screen cover removed
+2026-11-13 21:41:35 | Phone detected - screen covered
+2026-11-13 21:41:42 | Screen cover removed
+2026-11-13 21:41:57 | Phone detected - screen covered
+2026-11-13 21:42:10 | Screen cover removed
+2026-11-13 21:42:23 | Phone detected - screen covered
+2026-11-13 21:42:24 | Screen cover removed
+2026-11-13 21:42:25 | Phone detected - screen covered
+2026-11-13 21:42:26 | Screen cover removed
+2026-11-13 21:42:29 | Phone detected - screen covered
+2026-11-13 21:42:39 | Screen cover removed
+2026-11-13 23:20:02 | Phone detected - screen covered
+2026-11-13 23:20:05 | Screen cover removed
+2026-11-13 23:20:08 | Phone detected - screen covered
+2026-11-13 23:20:11 | Screen cover removed
+2026-11-13 23:20:15 | Phone detected - screen covered
+2026-11-13 23:20:18 | Screen cover removed
+2026-11-13 23:20:48 | Phone detected - screen covered
+2026-11-13 23:20:48 | Screen cover removed
+2026-11-13 23:20:50 | Phone detected - screen covered
+2026-11-13 23:20:55 | Screen cover removed
+2026-11-13 23:20:57 | Phone detected - screen covered
+2026-11-13 23:20:59 | Screen cover removed
+2026-11-13 23:21:02 | Phone detected - screen covered
+2026-11-13 23:21:05 | Screen cover removed
+2026-11-13 23:21:13 | Phone detected - screen covered
+2026-11-13 23:21:16 | Screen cover removed
+2026-11-13 23:22:02 | No person detected for 10 seconds - SecureDesk closed and workstation locked
+2026-11-14 08:37:52 | Phone detected - screen covered
+2026-11-14 08:37:53 | Screen cover removed
+2026-11-14 08:37:58 | Phone detected - screen covered
+2026-11-14 08:37:59 | Screen cover removed
+2026-11-14 08:38:13 | No person detected for 10 seconds - SecureDesk closed and workstation locked
+2026-11-14 09:22:20 | Phone detected - screen covered
+2026-11-14 09:22:23 | Screen cover removed
+2026-11-14 09:22:38 | Phone detected - screen covered
+2026-11-14 09:22:47 | Screen cover removed
+2026-11-14 10:39:24 | Phone detected - screen covered
+2026-11-14 10:39:25 | Screen cover removed
+2026-11-14 10:39:26 | Phone detected - screen covered
+2026-11-14 10:39:28 | Screen cover removed
+2026-11-14 10:39:39 | Phone detected - screen covered
+2026-11-14 10:39:43 | Screen cover removed
+2026-11-14 10:39:45 | Phone detected - screen covered
+2026-11-14 10:39:46 | Screen cover removed
+2026-11-14 10:39:48 | Phone detected - screen covered
+2026-11-14 10:39:51 | Screen cover removed
+2026-11-14 10:39:58 | Phone detected - screen covered
+2026-11-14 10:40:05 | Screen cover removed
+2026-11-14 10:40:18 | Phone detected - screen covered
+2026-11-14 10:40:23 | Screen cover removed
+2026-11-14 10:40:30 | Phone detected - screen covered
+2026-11-14 10:40:34 | Screen cover removed
+2026-11-14 10:40:35 | Phone detected - screen covered
+2026-11-14 10:40:43 | Screen cover removed
+2026-11-14 10:40:46 | Phone detected - screen covered
+2026-11-14 10:40:50 | Screen cover removed
+2026-11-14 10:40:57 | Phone detected - screen covered
+2026-11-14 10:41:03 | Screen cover removed
+2026-11-14 10:41:05 | Phone detected - screen covered
+2026-11-14 10:41:07 | Screen cover removed
+2026-11-14 10:41:17 | Phone detected - screen covered
+2026-11-14 10:41:19 | Screen cover removed
+2026-11-14 10:41:27 | Phone detected - screen covered
+2026-11-14 10:41:32 | Screen cover removed
+2026-11-14 10:42:58 | Phone detected - screen covered
+2026-11-14 10:43:02 | Screen cover removed
+2026-11-14 10:43:03 | Phone detected - screen covered
+2026-11-14 10:43:10 | Screen cover removed
+2026-11-14 10:43:15 | Phone detected - screen covered
+2026-11-14 10:43:16 | Screen cover removed
+2026-11-14 10:43:28 | Phone detected - screen covered
+2026-11-14 10:43:29 | Screen cover removed
+2026-11-14 10:43:30 | Phone detected - screen covered
+2026-11-14 10:43:34 | Screen cover removed
+2026-11-14 10:43:48 | Phone detected - screen covered
+2026-11-14 10:43:55 | Screen cover removed
+2026-11-14 10:44:01 | Phone detected - screen covered
+2026-11-14 10:44:03 | Screen cover removed
+2026-11-14 10:44:10 | Phone detected - screen covered
+2026-11-14 10:44:13 | Screen cover removed
+2026-11-14 10:44:24 | Phone detected - screen covered
+2026-11-14 10:44:27 | Screen cover removed
+2026-11-14 10:44:37 | Phone detected - screen covered
+2026-11-14 10:44:40 | Screen cover removed
+2026-11-14 10:45:05 | Phone detected - screen covered
+2026-11-14 10:45:08 | Screen cover removed
+2026-11-14 10:45:16 | Phone detected - screen covered
+2026-11-14 10:45:24 | Screen cover removed
+2026-11-14 10:45:33 | Phone detected - screen covered
+2026-11-14 10:45:38 | Screen cover removed
+2026-11-14 10:45:44 | Phone detected - screen covered
+2026-11-14 10:45:48 | Screen cover removed
+2026-11-15 09:07:12 | Phone detected - screen covered
+2026-11-15 09:07:17 | Screen cover removed
+2026-11-15 09:48:12 | Phone detected - screen covered
+2026-11-15 09:48:15 | Screen cover removed
+2026-11-15 10:29:12 | Phone detected - screen covered
+2026-11-15 10:29:14 | Screen cover removed
+2026-11-15 11:10:12 | Phone detected - screen covered
+2026-11-15 11:10:15 | Screen cover removed
+2026-11-15 11:51:12 | Phone detected - screen covered
+2026-11-15 11:51:15 | Screen cover removed
+2026-11-15 17:58:38 | Phone detected - screen covered
+2026-11-15 17:58:43 | Screen cover removed
+2026-11-15 17:58:46 | Phone detected - screen covered
+2026-11-15 17:58:49 | Screen cover removed
+2026-11-15 17:58:51 | Phone detected - screen covered
+2026-11-15 17:58:53 | Screen cover removed
+2026-11-15 17:58:55 | Phone detected - screen covered
+2026-11-15 17:58:58 | Screen cover removed
+2026-11-15 17:59:00 | Phone detected - screen covered
+2026-11-15 17:59:03 | Screen cover removed
+2026-11-15 17:59:04 | Phone detected - screen covered
+2026-11-15 17:59:07 | Screen cover removed
+2026-11-15 17:59:08 | Phone detected - screen covered
+2026-11-15 17:59:11 | Screen cover removed
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ===================================================================
+     NEEDS REVIEW RULES - the only place the numbers live. Edit them here.
+     =================================================================== */
+  var RULES = {
+    PHONE_COVERS_PER_DAY_LIMIT: 10,    /* Rule 1: this many "Phone detected" lines in one day, or more */
+    ABSENCE_LOCKS_PER_DAY_LIMIT: 10,   /* Rule 2: this many absence-lock lines in one day, or more (locked and FAILED together) */
+    FLAG_ANY_FAILED_LOCK: true         /* Rule 3: any one line with "workstation lock FAILED" */
+  };
+  /* =================================================================== */
+
+  var EMPLOYEES = [
+    { id: "A", label: "Employee A", source: "log-employee_A", note: "Exact copy of the real log", variation: false },
+    { id: "B", label: "Employee B", source: "log-employee_B", note: "Copy with every time shifted by a few minutes", variation: false },
+    { id: "C", label: "Employee C", source: "log-employee_C", note: "Sample variation: events repeated for the demo", variation: true }
+  ];
+
+  var COVER_TEXT = "Phone detected - screen covered";
+  var REMOVED_TEXT = "Screen cover removed";
+  var LOCKED_RE = /^No person detected for (\d+) seconds - SecureDesk closed and workstation locked$/;
+  var FAILED_RE = /^No person detected for (\d+) seconds - SecureDesk closed; workstation lock FAILED$/;
+  var LINE_RE = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2}) \| (.*)$/;
+
+  var TYPE_OPTIONS = [
+    ["all", "All events"],
+    ["covered", "Phone covers"],
+    ["removed", "Cover removed"],
+    ["locked", "Absence locks (locked)"],
+    ["failed", "Failed locks"]
+  ];
+
+  /* ---------- reading the log text ---------- */
+  function validStamp(y, mo, d, h, mi, s) {
+    var dt = new Date(Date.UTC(y, mo - 1, d, h, mi, s));
+    return dt.getUTCFullYear() === y && dt.getUTCMonth() === mo - 1 && dt.getUTCDate() === d && h < 24 && mi < 60 && s < 60;
+  }
+
+  function parseLog(text) {
+    var rows = text.split(/\r?\n/);
+    if (rows.length && rows[rows.length - 1] === "") { rows.pop(); }
+    var events = [], unrecognised = [];
+    rows.forEach(function (line, i) {
+      var n = i + 1;
+      var m = LINE_RE.exec(line);
+      var kind = null, stamp = null;
+      if (m && validStamp(+m[1], +m[2], +m[3], +m[4], +m[5], +m[6])) {
+        stamp = m[1] + "-" + m[2] + "-" + m[3] + " " + m[4] + ":" + m[5] + ":" + m[6];
+        var words = m[7];
+        if (words === COVER_TEXT) { kind = "covered"; }
+        else if (words === REMOVED_TEXT) { kind = "removed"; }
+        else if (LOCKED_RE.test(words)) { kind = "locked"; }
+        else if (FAILED_RE.test(words)) { kind = "failed"; }
+      }
+      if (kind) {
+        events.push({ n: n, stamp: stamp, day: stamp.slice(0, 10), clock: stamp.slice(11), kind: kind, words: m[7] });
+      } else {
+        unrecognised.push({ n: n, text: line === "" ? "(empty line)" : line });
+      }
+    });
+    return { events: events, unrecognised: unrecognised };
+  }
+
+  /* ---------- counting and the review rules ---------- */
+  function summarise(events) {
+    var s = { covers: 0, absence: 0, failed: 0, last: "", coversByDay: {}, absenceByDay: {}, failedLines: [] };
+    events.forEach(function (e) {
+      if (e.stamp > s.last) { s.last = e.stamp; }
+      if (e.kind === "covered") {
+        s.covers += 1;
+        s.coversByDay[e.day] = (s.coversByDay[e.day] || 0) + 1;
+      } else if (e.kind === "locked" || e.kind === "failed") {
+        s.absence += 1;
+        s.absenceByDay[e.day] = (s.absenceByDay[e.day] || 0) + 1;
+        if (e.kind === "failed") { s.failed += 1; s.failedLines.push(e); }
+      }
+    });
+    return s;
+  }
+
+  function reviewReasons(s) {
+    var reasons = [];
+    Object.keys(s.coversByDay).sort().forEach(function (day) {
+      if (s.coversByDay[day] >= RULES.PHONE_COVERS_PER_DAY_LIMIT) {
+        reasons.push(s.coversByDay[day] + " phone covers on " + day + " (limit " + RULES.PHONE_COVERS_PER_DAY_LIMIT + ")");
+      }
+    });
+    Object.keys(s.absenceByDay).sort().forEach(function (day) {
+      if (s.absenceByDay[day] >= RULES.ABSENCE_LOCKS_PER_DAY_LIMIT) {
+        reasons.push(s.absenceByDay[day] + " absence locks on " + day + " (limit " + RULES.ABSENCE_LOCKS_PER_DAY_LIMIT + ")");
+      }
+    });
+    if (RULES.FLAG_ANY_FAILED_LOCK) {
+      s.failedLines.forEach(function (e) {
+        reasons.push("A failed lock on " + e.day + " at " + e.clock + ' (line says "workstation lock FAILED")');
+      });
+    }
+    return reasons;
+  }
+
+  /* ---------- state ---------- */
+  var data = EMPLOYEES.map(function (emp) {
+    var parsed = parseLog(document.getElementById(emp.source).textContent);
+    var stats = summarise(parsed.events);
+    return { emp: emp, events: parsed.events, unrecognised: parsed.unrecognised, stats: stats, reasons: reviewReasons(stats) };
+  });
+  data.sort(function (a, b) {
+    var fa = a.reasons.length > 0 ? 0 : 1, fb = b.reasons.length > 0 ? 0 : 1;
+    return fa - fb || (a.emp.label < b.emp.label ? -1 : 1);
+  });
+
+  var marks = {};                 /* what the manager clicked; lives only in this page, never saved */
+  var selectedId = data[0].emp.id;
+  var filterType = "all", filterDay = "all";
+
+  function find(id) { return data.filter(function (d) { return d.emp.id === id; })[0]; }
+
+  function el(tag, attrs, kids) {
+    var node = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      if (k === "text") { node.textContent = attrs[k]; } else { node.setAttribute(k, attrs[k]); }
+    });
+    (kids || []).forEach(function (kid) { node.appendChild(kid); });
+    return node;
+  }
+
+  /* ---------- drawing ---------- */
+  function drawSummary() {
+    var covers = 0, absence = 0, failed = 0, flagged = 0, pending = 0;
+    data.forEach(function (d) {
+      covers += d.stats.covers; absence += d.stats.absence; failed += d.stats.failed;
+      if (d.reasons.length) { flagged += 1; if (!marks[d.emp.id]) { pending += 1; } }
+    });
+    document.getElementById("sum-covers").textContent = covers;
+    document.getElementById("sum-absence").textContent = absence;
+    document.getElementById("sum-failed").textContent = failed;
+    document.getElementById("sum-review").textContent = pending;
+    document.getElementById("sum-review-sub").textContent =
+      flagged === pending ? (flagged + " flagged by the rules") : (flagged + " flagged, " + (flagged - pending) + " marked on this screen");
+  }
+
+  function statusCell(d) {
+    var cell = el("td", {});
+    if (!d.reasons.length) {
+      cell.appendChild(el("span", { "class": "badge clear", text: "No flags" }));
+      return cell;
+    }
+    var mark = marks[d.emp.id];
+    var badge = mark === "reviewed" ? el("span", { "class": "badge done", text: "Reviewed (this screen only)" })
+      : mark === "noaction" ? el("span", { "class": "badge done", text: "No action needed (this screen only)" })
+      : el("span", { "class": "badge review", text: "Needs review" });
+    cell.appendChild(badge);
+    cell.appendChild(el("ul", { "class": "reasons" }, d.reasons.map(function (r) { return el("li", { text: r }); })));
+
+    var actions = el("div", { "class": "actions" });
+    [["reviewed", "Mark reviewed"], ["noaction", "No action needed"]].forEach(function (choice) {
+      var btn = el("button", { type: "button", text: choice[1], "aria-pressed": mark === choice[0] ? "true" : "false" });
+      btn.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        marks[d.emp.id] = marks[d.emp.id] === choice[0] ? undefined : choice[0];
+        drawAll();
+      });
+      actions.appendChild(btn);
+    });
+    cell.appendChild(actions);
+    return cell;
+  }
+
+  function drawTable() {
+    var body = document.querySelector("#employees tbody");
+    body.textContent = "";
+    data.forEach(function (d) {
+      var tr = el("tr", { tabindex: "0", "data-id": d.emp.id, "class": d.emp.id === selectedId ? "selected" : "" });
+      var who = el("td", {}, [
+        el("span", { "class": "who", text: d.emp.label }),
+        el("span", { "class": "tag" + (d.emp.variation ? " variation" : ""), text: d.emp.note })
+      ]);
+      tr.appendChild(who);
+      tr.appendChild(el("td", { "class": "num", text: String(d.stats.covers) }));
+      tr.appendChild(el("td", { "class": "num", text: String(d.stats.absence) }));
+      tr.appendChild(el("td", { "class": "num", text: String(d.stats.failed) }));
+      tr.appendChild(el("td", { "class": "time", text: d.stats.last || "-" }));
+      tr.appendChild(statusCell(d));
+      var choose = function () { selectedId = d.emp.id; drawAll(); };
+      tr.addEventListener("click", choose);
+      tr.addEventListener("keydown", function (ev) { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); choose(); } });
+      body.appendChild(tr);
+    });
+  }
+
+  function drawFilters(d) {
+    var typeSel = document.getElementById("filter-type");
+    typeSel.textContent = "";
+    TYPE_OPTIONS.forEach(function (o) { typeSel.appendChild(el("option", { value: o[0], text: o[1] })); });
+    typeSel.value = filterType;
+
+    var days = [];
+    d.events.forEach(function (e) { if (days.indexOf(e.day) < 0) { days.push(e.day); } });
+    days.sort().reverse();
+    if (filterDay !== "all" && days.indexOf(filterDay) < 0) { filterDay = "all"; }
+    var daySel = document.getElementById("filter-day");
+    daySel.textContent = "";
+    daySel.appendChild(el("option", { value: "all", text: "All days" }));
+    days.forEach(function (day) { daySel.appendChild(el("option", { value: day, text: day })); });
+    daySel.value = filterDay;
+  }
+
+  function drawTimeline() {
+    var d = find(selectedId);
+    document.getElementById("timeline-title").textContent = "Timeline - " + d.emp.label;
+    drawFilters(d);
+    var shown = d.events.filter(function (e) {
+      return (filterType === "all" || e.kind === filterType) && (filterDay === "all" || e.day === filterDay);
+    });
+    shown.sort(function (a, b) { return a.stamp < b.stamp ? 1 : a.stamp > b.stamp ? -1 : b.n - a.n; });   /* newest first */
+    document.getElementById("timeline-count").textContent = "Showing " + shown.length + " of " + d.events.length + " events, newest first.";
+    var list = document.getElementById("timeline");
+    list.textContent = "";
+    if (!shown.length) { list.appendChild(el("li", { "class": "empty", text: "No events match these filters." })); return; }
+    shown.forEach(function (e) {
+      list.appendChild(el("li", { "class": "t-" + e.kind }, [
+        el("span", { "class": "when", text: e.stamp }),
+        el("span", { text: e.words })
+      ]));
+    });
+  }
+
+  function drawRules() {
+    var list = document.getElementById("rules-list");
+    list.textContent = "";
+    list.appendChild(el("li", { text: RULES.PHONE_COVERS_PER_DAY_LIMIT + ' or more "Phone detected" lines in one day.' }));
+    list.appendChild(el("li", { text: RULES.ABSENCE_LOCKS_PER_DAY_LIMIT + ' or more absence-lock lines in one day (lines starting "No person detected for", locked and FAILED together).' }));
+    if (RULES.FLAG_ANY_FAILED_LOCK) { list.appendChild(el("li", { text: 'Any one line with "workstation lock FAILED".' })); }
+    document.getElementById("rules-fine").textContent = "There are no other rules. A flag means: please look at this pattern. It is not proof of anything.";
+  }
+
+  function drawUnrecognised() {
+    var body = document.getElementById("unrec-body");
+    body.textContent = "";
+    var total = 0;
+    var list = el("ul", {});
+    data.slice().sort(function (a, b) { return a.emp.label < b.emp.label ? -1 : 1; }).forEach(function (d) {
+      d.unrecognised.forEach(function (u) {
+        total += 1;
+        list.appendChild(el("li", {}, [el("span", { text: d.emp.label + ", line " + u.n + ": " }), el("code", { text: u.text })]));
+      });
+    });
+    if (!total) {
+      body.appendChild(el("p", { "class": "empty", text: "None. Every line matched one of the four event types." }));
+    } else {
+      body.appendChild(el("p", { "class": "hint", text: total + " line(s) did not match any of the four event types. They are listed here, not counted." }));
+      body.appendChild(list);
+    }
+  }
+
+  function drawAll() { drawSummary(); drawTable(); drawTimeline(); }
+
+  document.getElementById("filter-type").addEventListener("change", function (ev) { filterType = ev.target.value; drawTimeline(); });
+  document.getElementById("filter-day").addEventListener("change", function (ev) { filterDay = ev.target.value; drawTimeline(); });
+
+  drawRules();
+  drawUnrecognised();
+  drawAll();
+})();
+</script>
+</body>
+</html>

@@ -23,7 +23,7 @@ The full story of each step is in `08_Detection_Tuning_Log.md`.
 | Threading | Detector in a background thread | Keeps the video smooth |
 
 ## 3. Facts already recorded
-These were observed during the build on the development laptop (Windows, CPU only, no graphics card).
+These were observed during the build on the development laptop (Windows, CPU only, no graphics card). The scripted checks named below (rule logic, start/stop scenarios, absence-lock scenarios) were run during the build; their scripts are not included in this repository, so they cannot be re-run from here. The only test scripts in `prototype/` are `test_webcam.py` and `test_detection.py`. A blank log for the formal run is in `05a_Formal_Test_Log_TEMPLATE.md`.
 | Fact | Value | Note |
 |---|---|---|
 | Time per frame at size 640 | about 146 ms (about 7 frames per second) | Before the speed work |

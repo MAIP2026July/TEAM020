@@ -1,0 +1,6 @@
+venv/
+*.pt
+__pycache__/
+office_ip.txt
+config.json
+session_log.txt

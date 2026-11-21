@@ -54,4 +54,4 @@ This is the V1.1 text (commit `540f846`, 14 Nov 2026). The first release (v1.0) 
 ## 5. What we deliberately did not build into the screens
 - No sound alarms, no popups to managers, no photos of the phone.
 - No "report" button or hidden remote view.
-- No admin screen with Employee names. An admin view was considered and dropped to protect trust.
+- No admin screen with Employee names. An admin view was considered and dropped to protect trust. A counts-only Security Reviewer view exists only as a V3 mock-up (`12_Security_Reviewer_View_V3_Concept.md`); it is not part of the product and would need a new consent text first.
