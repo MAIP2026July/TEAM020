@@ -32,9 +32,6 @@ We keep the two kinds apart. The ₹100 is the least we need from every seat. Th
 
 Threat is 56 % of the value and retention 44 %. Not counted in rupees: a better chance of winning projects (about 5 %), trust with the Bank, Employee well-being.
 
-## 3a. Why the earlier numbers were replaced
-The earlier version of this file valued only leak loss (₹417 per seat per month) and found a ratio of 2.3 against a cost of ₹183. Course guidance is that a customer expects to gain **3 to 4 times** what it pays, because switching carries a risk. The earlier numbers did not meet that. The model below does.
-
 ## 4. The price
 **Price = the customer's value ÷ 3 to 4.** Value is ₹1,875, so the range is ₹469 to ₹625.
 
