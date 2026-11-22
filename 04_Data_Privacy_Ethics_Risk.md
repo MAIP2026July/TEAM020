@@ -92,7 +92,7 @@ The first logging design recorded consent, network and start/stop events. During
 | A camera read that hangs forever is not caught | Documented | Guard could stay up with a stuck camera |
 | Absence lock force-closes the application with no save prompt | The demo application stores nothing; a real application needs design with the Bank | Unsaved work could be lost |
 | Employees feel watched | Consent each session, text-only log, no productivity data, readable log | Trust must be earned in the pilot |
-| Open-source licence | Check model licence terms before any sale to another bank | Legal check needed |
+| Open-source licence | The detector is free under AGPL-3.0 only if we publish our source; a closed product needs a paid Enterprise License, price not public (`06` section 2a). Check before any sale | Legal check and a vendor quote needed |
 
 ## 7. Launch checklist
 | Check | Threshold to start the pilot |

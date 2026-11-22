@@ -20,8 +20,48 @@ SessionGuard is a security control that a **Service Company** (an IT services fi
 | One-time cost (build) | Paid once, however many customers we have. A production-quality version: better detection models, formal testing and more effort than the prototype | **₹4,00,000 (A)** |
 | Running cost | Paid again for every seat each month: support and updates | **₹100 per seat per month (A)** |
 | Cloud, API, tokens | Everything runs on the laptop | ₹0 |
+| Model licence (Ultralytics YOLO) | A flat annual fee for the company that sells the product; quote only, no public price | **Unknown (A)**. Shown in section 2a. Not included in sections 5 to 8 |
 
 We keep the two kinds apart. The ₹100 is the least we need from every seat. The ₹4,00,000 is earned back from what is left over.
+
+## 2a. The model licence: a cost we do not know yet
+**What the licence is.** The detector is Ultralytics YOLO. Ultralytics offers it under two licences:
+- **Open-source (AGPL-3.0), free.** If we distribute a product built on it, or let people use it over a network, the licence requires us to publish the complete source of the whole application under the same licence.
+- **Enterprise License, paid.** This is the route for a closed commercial product or a private company tool. It is an annual subscription held by the company that sells the end product. Ultralytics quotes the price for each case, based on the use and the size of the organisation. **No price is published.**
+
+**What this means for us.** Selling SessionGuard as a closed product to Service Companies needs the Enterprise License. Until we have a quote, we cannot state a final price with confidence. The ₹0 licence cost in sections 5 to 8 is therefore a placeholder, not a fact.
+
+**What each possible fee would do (100 seats, ₹500 price, ₹100 running cost, ₹4,00,000 build).** The fee is a flat annual amount for the company, not a per-seat fee. The per-seat figure is only a way to compare.
+
+| Annual licence fee | Equal to, per seat per month | Our contribution per year | Build cost earned back after |
+|---|---|---|---|
+| ₹0 (the placeholder in sections 5 to 8) | ₹0 | ₹4,80,000 | 10 months |
+| ₹1,00,000 | ₹83 | ₹3,80,000 | 12.6 months |
+| ₹2,40,000 | ₹200 | ₹2,40,000 | 20 months |
+| ₹3,60,000 | ₹300 | ₹1,20,000 | 40 months |
+| ₹4,80,000 | ₹400 | ₹0 | Never |
+
+- **Break-even fee:** at ₹4,80,000 a year the contribution is zero.
+- **Room to pass it on:** the price can rise from ₹500 to ₹625 before the customer’s gain falls below 3 times. That is ₹125 per seat per month, or ₹1,50,000 a year at 100 seats. A fee up to that amount can be passed on without lowering our contribution.
+- **A flat fee favours volume:** the same ₹2,40,000 a year is ₹200 per seat per month at 100 seats but ₹100 at 200 seats.
+
+**Safety margin: all our costs up 20 %.** The professor’s test: if input costs rise by 20 %, are we still profitable? Running cost becomes ₹120 per seat per month, the build cost ₹4,80,000, and any licence fee 20 % higher. Price stays at ₹500, 100 seats.
+
+| Case | Our contribution per year | Build cost earned back after |
+|---|---|---|
+| No licence fee, costs as planned | ₹4,80,000 | 10 months |
+| No licence fee, all costs up 20 % | ₹4,56,000 | 12.6 months |
+| Licence ₹1,00,000 a year, all costs up 20 % (licence ₹1,20,000) | ₹3,36,000 | 17.1 months |
+| Licence ₹2,40,000 a year, all costs up 20 % (licence ₹2,88,000) | ₹1,68,000 | 34.3 months |
+
+We stay profitable in every row above, but the payback passes one year once a licence fee is added. The product only works at ₹500 if the fee stays below about ₹1,50,000 a year at 100 seats, or if we accept a longer payback.
+
+**Ways to reduce this risk**
+1. Ask Ultralytics, or an authorised reseller such as Roboflow, for an Enterprise License quote for our expected volume. A volume discount needs a promised volume, so we need a volume plan first (see section 11 and the next step in the plan).
+2. Test a detector with a permissive licence. Each model’s licence must be checked, and our accuracy tests repeated, because accuracy may differ.
+3. Publish SessionGuard under AGPL-3.0. This keeps the licence free but means publishing the full source, which does not suit a product we sell.
+
+**Sources:** [Ultralytics licensing](https://www.ultralytics.com/licensing), [Ultralytics Enterprise Software License](https://www.ultralytics.com/legal/enterprise-software-license), [Ultralytics staff reply on pricing basis](https://community.ultralytics.com/t/unable-to-submit-license-inquiry-via-website-requesting-commercial-license-information/1219), [Siemens listing of the Enterprise License](https://www.siemens.com/en-gb/products/ultralytics-enterprise-license/), [Roboflow as authorised licensor](https://roboflow.com/ultralytics). The licence terms and prices were read from public pages in November 2026 and must be confirmed with Ultralytics before any sale. This is not legal advice.
 
 ## 3. What a seat is worth to the customer
 | Gain | Working | Per seat per year | Per seat per month |
@@ -63,7 +103,7 @@ One avoided ₹50,00,000 incident equals about 8 years of the price for 100 seat
 
 - The build cost is earned back in about **10 months** (₹4,00,000 ÷ ₹40,000 a month), inside one year.
 - With renewal, three years give about ₹10,40,000 after the build cost.
-- This is **contribution, not profit.** It leaves out selling effort, legal and compliance work, any central server for a Security Reviewer view, tax and the team's own time.
+- This is **contribution, not profit.** It leaves out selling effort, legal and compliance work, the model licence fee (section 2a), any central server for a Security Reviewer view, tax and the team's own time.
 
 ## 7. Stress test, 100 seats
 The price stays at ₹500, so the customer pays ₹6,00,000 a year in every row. One assumption changes at a time.
@@ -183,6 +223,7 @@ The closest are **laptop onlooker detection** (row 4) and **watermarking** (row 
 | 2 of every 40 Employees retained | Work-from-home flexibility is only one reason people stay; not yet tested | Attrition before and after, on the same teams |
 | ₹2,00,000 to rehire and train one person | Varies by role and company | The Service Company's own hiring figures |
 | ₹4,00,000 build and ₹100 per seat running cost | An estimate for a production-quality version; support load not yet seen | Actual build effort and support hours in the pilot |
+| Model licence fee | Quote only; no public price. A closed commercial product needs the Enterprise License | Ask for a quote at our expected volume and record it here (section 2a) |
 
 Other risks: the Bank may build this itself; the open-source model licence may limit resale and must be checked before any sale; support cost may rise if laptops are weak or varied.
 
@@ -196,4 +237,5 @@ Other risks: the Bank may build this itself; the open-source model licence may l
 | Running cost | ₹100 | ₹100 | Unchanged |
 | Price | ₹400 to other banks | ₹500 to Service Companies | Set from the 3 to 4 times rule |
 | Competitors | A few lines | A table of eight alternatives with public prices, our closest competitors and a comparison with office-only work (section 11) | The professor asked every team for a competitor analysis |
+| Model licence | Not shown | Shown as an unknown cost with a margin table and a test with all costs up 20 % (section 2a) | The professor’s feedback on the YOLO licence and on safety margins |
 | Result | Ratio 2.3 | Ratio 3.75 | |
