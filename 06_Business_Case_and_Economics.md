@@ -57,7 +57,7 @@ We keep the two kinds apart. The ₹100 is the least we need from every seat. Th
 We stay profitable in every row above, but the payback passes one year once a licence fee is added. The product only works at ₹500 if the fee stays below about ₹1,50,000 a year at 100 seats, or if we accept a longer payback.
 
 **Ways to reduce this risk**
-1. Ask Ultralytics, or an authorised reseller such as Roboflow, for an Enterprise License quote for our expected volume. A volume discount needs a promised volume, so we need a volume plan first (see section 11 and the next step in the plan).
+1. Ask Ultralytics, or an authorised reseller such as Roboflow, for an Enterprise License quote for our expected volume. A volume discount needs a promised volume, so we need a volume plan first (see section 11f).
 2. Test a detector with a permissive licence. Each model’s licence must be checked, and our accuracy tests repeated, because accuracy may differ.
 3. Publish SessionGuard under AGPL-3.0. This keeps the licence free but means publishing the full source, which does not suit a product we sell.
 
@@ -196,7 +196,48 @@ The closest are **laptop onlooker detection** (row 4) and **watermarking** (row 
 | Phone-camera theft | Not covered while working from home, because there is no work from home | Covered when the phone is in the webcam’s view |
 | What it cannot do | Keep critical people who want flexibility | See a device outside the webcam’s view, including a CCTV camera in the room |
 
-### 11e. Limits of this analysis
+### 11e. Who we sell to, and how
+**The customer.** Service Companies (IT services, outsourcing and financial-services vendors) that deliver projects for banks and other financial institutions under strict rules. They fit because they:
+- carry the liability when data leaks, and must show the Bank that controls are in place;
+- often cannot offer work from home on critical projects, and lose people because of it;
+- already use VDI or similar tools, so SessionGuard adds to what they have.
+
+**Who decides (our assumption).** The person who owns the Bank relationship and the person who owns security, with the Bank’s approval of the control and the Compliance Officer’s sign-off on the consent text.
+
+**The first customer.** A Service Company the team already knows through its own work. The path is the pilot already planned: 10 seats for 8 weeks, then 100 seats if the numbers hold. A Bank reference from the pilot is worth more to the next customer than any slide.
+
+**Three ways to reach customers**
+| Route | How it works | For | Against |
+|---|---|---|---|
+| **1. Direct to Service Companies** (our choice to start) | We sell and support it ourselves, using the pilot and the Bank reference | We keep the price and the customer relationship. Fastest to start | Selling effort is ours. Reach is small at first |
+| **2. Through a VDI vendor or partner** (Citrix, Microsoft, VMware and others) | Our product is offered as an approved add-on to their platform | Reach and trust that come with a known name | The vendor must approve our product. We share revenue. If the vendor builds its own version, we are out of that market |
+| **3. Through the Bank** | The Bank asks its vendors to use a control like ours | Demand is pulled in by the party that owns the data | Long decision cycle. The Bank may prefer to build or to buy from a big supplier |
+
+**Our plan.** Start with route 1, and approach VDI vendors only after a measured pilot, because a partner will ask for proof that the product works and is safe. Route 3 starts naturally if the Bank in the pilot recommends us to its other vendors.
+
+### 11f. Volume we are planning for (A)
+These numbers are a **planning guess** and the first paying customer is the real test. Each customer is assumed to buy 100 seats, as in sections 5 and 6.
+
+| Year | Customers | Paying seats (average) | Revenue at ₹500 | Our contribution (₹400 per seat per month) |
+|---|---|---|---|---|
+| 1 | 1 | 100 | ₹6,00,000 | ₹4,80,000 |
+| 2 | 3 | 300 | ₹18,00,000 | ₹14,40,000 |
+| 3 | 6 | 600 | ₹36,00,000 | ₹28,80,000 |
+
+- Over three years the contribution is ₹48,00,000. After the ₹4,00,000 build cost that is ₹44,00,000, **before** the licence fee, selling effort, compliance work and tax, none of which is counted here.
+- **Licence effect.** With a flat licence of ₹2,40,000 a year (section 2a), the three-year figure falls to ₹36,80,000 (₹48,00,000 − ₹7,20,000 − ₹4,00,000). The same flat fee is ₹200 per seat per month in year 1, about ₹67 in year 2 and about ₹33 in year 3, so volume lowers its weight.
+- **Why this matters for the licence.** A licence discount needs a promised volume. We would only promise a volume we can defend. We would ask for a quote at 100 seats for year 1 and at 300 seats for year 2, and not promise more until the pilot is done.
+
+### 11g. Making ourselves hard to replace
+Our protection is not technology alone, because using a webcam to detect a phone can be copied. What can make us harder to replace:
+- **Bank-accepted evidence.** A design a Bank can audit: nothing stored, consent every session, an incident log the Employee can read. Once a Bank has accepted a control, a customer does not change it lightly.
+- **Approval by the platforms we sit on.** Approval by a VDI vendor and by the Bank is a barrier for a new rival.
+- **A wider product.** Other capture devices (V2) and a counts-only view for the Security Reviewer (V3), both on the roadmap.
+- **Learning from the pilot.** Measured catch rates and false covers on real laptops let us tune faster than a copy.
+
+**An honest view.** Switching away from us is cheap for a customer, and a VDI vendor or laptop maker could add the same feature. If a platform vendor builds it in, we lose that market. That is why we would partner with such vendors after the pilot and not compete with them.
+
+### 11h. Limits of this analysis
 - The prices and figures are public snapshots from the web, not quotes, and are marked as such.
 - We did not find the price of a product like ours, and we found no source for a market share. We say so instead of guessing.
 - Dell and HCLTech information comes from their public pages and brochures. We did not test their products or confirm whether they detect phones.
@@ -224,6 +265,7 @@ The closest are **laptop onlooker detection** (row 4) and **watermarking** (row 
 | ₹2,00,000 to rehire and train one person | Varies by role and company | The Service Company's own hiring figures |
 | ₹4,00,000 build and ₹100 per seat running cost | An estimate for a production-quality version; support load not yet seen | Actual build effort and support hours in the pilot |
 | Model licence fee | Quote only; no public price. A closed commercial product needs the Enterprise License | Ask for a quote at our expected volume and record it here (section 2a) |
+| Volume plan: 1, 3 and 6 customers of 100 seats in years 1 to 3 | A planning guess; the first paying customer is the real test | Pilot conversion, and the first signed customer (section 11f) |
 
 Other risks: the Bank may build this itself; the open-source model licence may limit resale and must be checked before any sale; support cost may rise if laptops are weak or varied.
 
@@ -238,4 +280,5 @@ Other risks: the Bank may build this itself; the open-source model licence may l
 | Price | ₹400 to other banks | ₹500 to Service Companies | Set from the 3 to 4 times rule |
 | Competitors | A few lines | A table of eight alternatives with public prices, our closest competitors and a comparison with office-only work (section 11) | The professor asked every team for a competitor analysis |
 | Model licence | Not shown | Shown as an unknown cost with a margin table and a test with all costs up 20 % (section 2a) | The professor’s feedback on the YOLO licence and on safety margins |
+| Go to market | Not covered | Who we sell to, three routes to customers, a three-year volume plan and how we stay hard to replace (sections 11e to 11g) | The professor asked about go to market, volume and replacement risk |
 | Result | Ratio 2.3 | Ratio 3.75 | |
