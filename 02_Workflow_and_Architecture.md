@@ -29,11 +29,11 @@ flowchart TB
     C9[Append one text line to log]
     C10[Stop camera, remove cover, exit]
   end
-  subgraph DET[Detector - AI, probabilistic]
-    D1[YOLO reads each frame: phone? person?]
-    D2{Phone in 3 of last 5 results?}
-    D4{At least 3 phone results in next 10?}
-    D3{Person seen within lock timer?}
+  subgraph DET[Detector - AI1 phone detection and AI2 person present, probabilistic]
+    D1[YOLO reads each frame: AI1 phone? AI2 person?]
+    D2{AI1 result: phone in 3 of last 5 results?}
+    D4{AI1 check: at least 3 phone results in next 10?}
+    D3{AI2 result: person seen within lock timer?}
   end
   A1 --> C1
   B1 --> C1 --> C2
@@ -55,6 +55,19 @@ flowchart TB
   C8 --> B6
   C9 --> B5
 ```
+
+### AI steps and human gates
+AI is used in two places, both by the same detector: **AI1** looks for a phone and **AI2** looks for a person. Everything around them is a fixed rule.
+
+| Step | AI or fixed rule | Human gate |
+|---|---|---|
+| Office check | Fixed rule | None, automatic |
+| Consent | The Employee’s decision | **Human decides** (Agree or Decline) |
+| AI1: phone detection | AI, then fixed rules (3 of 5 to trigger, 3 of the next 10 to confirm) | None. Runs straight through; the cover clears by itself 2 seconds after the phone is gone |
+| AI2: person present | AI, then a timer | None. Runs straight through; the Employee signs in to Windows again after a lock |
+| Log | Fixed rule: one text line per incident | The Employee reads it and the Security Reviewer reviews it afterwards |
+
+**Why the cover and the lock run straight through.** A human approval step would be too slow to stop a photo that takes about two seconds. The risk is handled instead by the confirm step, the 2-second release, and the Employee being able to see why the screen was covered.
 
 ### Where the AI is uncertain, and the fallback
 | Point | Uncertainty | Fallback |
