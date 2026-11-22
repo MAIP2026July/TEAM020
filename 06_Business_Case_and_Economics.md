@@ -195,4 +195,5 @@ Other risks: the Bank may build this itself; the open-source model licence may l
 | Build cost | ₹2,00,000 | ₹4,00,000 | A production-quality version with better detection models and formal testing, not only the prototype |
 | Running cost | ₹100 | ₹100 | Unchanged |
 | Price | ₹400 to other banks | ₹500 to Service Companies | Set from the 3 to 4 times rule |
+| Competitors | A few lines | A table of eight alternatives with public prices, our closest competitors and a comparison with office-only work (section 11) | The professor asked every team for a competitor analysis |
 | Result | Ratio 2.3 | Ratio 3.75 | |
