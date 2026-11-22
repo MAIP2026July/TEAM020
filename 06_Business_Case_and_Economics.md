@@ -3,6 +3,8 @@ Team 020 – SessionGuard | Members: see `README.md`
 
 Figures marked **(A)** are team planning assumptions, not measured facts. The pilot is meant to replace every (A) figure with measured numbers. All amounts are in rupees. One **seat** is one Employee laptop protected by SessionGuard. We count everything per seat, per month.
 
+The same numbers are in a workbook with live formulas, `06a_Economics_Workbook.xlsx`, with two sheets: **Customer case** (what the Service Company pays and gains, with the stress test) and **Our profitability** (our cost, the three-year volume plan, the licence sensitivity and the test with all costs up 20 %). Change a blue cell and everything recalculates.
+
 ## 1. Who pays, and why
 SessionGuard is a security control that a **Service Company** (an IT services firm working on a Bank's critical projects) buys for its Employees.
 

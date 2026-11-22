@@ -27,6 +27,7 @@ A bank Employee working on a sensitive screen outside the office is watched by t
 | 04 | `04_Data_Privacy_Ethics_Risk.md` | Exact data held, consent, retention, regulator view, risks, launch checklist |
 | 05 | `05_Model_and_Evaluation.md` | Model choice, measured facts, test plan and results table |
 | 06 | `06_Business_Case_and_Economics.md` | Who pays, cost, model licence, value, pricing at 3 to 4 times the customer's gain, stress test, 100-seat view, competitors, go to market and volume |
+| 06a | `06a_Economics_Workbook.xlsx` | The same numbers as a two-sheet workbook with live formulas: the customer’s case and our profitability |
 | 07 | `07_Build_Journey_and_Iterations.md` | How the product was built, step by step, with every rollback |
 | 08 | `08_Detection_Tuning_Log.md` | Every detection experiment: change, observation, decision |
 | 09 | `09_AI_Collaboration_Log.md` | How AI was used, real prompts, where the team overruled the AI |
