@@ -77,6 +77,8 @@ The first logging design recorded consent, network and start/stop events. During
 | Risk | Control | Remaining risk |
 |---|---|---|
 | Phone missed (angle, light) | Rule windows, confidence 0.25, image size 512; limit is stated | Not a guarantee |
+| A phone, camera or recording device outside the webcam’s view (side angle, another position, a CCTV camera in the room) | Not detected. Stated as a limit. SessionGuard is an extra layer next to VDI, privacy filters and the Bank’s own policies | Not covered. A privacy filter narrows the side angle |
+| Capture devices other than phones (tablet, camera, smart glasses) | V1 detects phones only. Other devices are planned for V2 and need a model trained on labelled images of them | Not covered in V1 |
 | Look-alike object covers the screen | 3-of-5 trigger, 10-frame confirm, 2 s release | Small annoyance |
 | Office check uses public IP (a simulation) | Unknown or unreadable IP is treated as outside | Wrong list gives wrong mode |
 | Employee ends the guard in Task Manager | Not blocked in V1 | Known gap; V3 would use a protected service |

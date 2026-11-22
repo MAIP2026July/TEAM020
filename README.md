@@ -2,7 +2,7 @@
 
 **Course:** MBAZG583 Management of AI Products (S1-26), BITS Pilani WILP
 **Professor:** Prof. Vinaya Sathyanarayana
-**Product type:** internal security tool for a bank (computer vision)
+**Product type:** security control for Employees of a Service Company working on a Bank’s data (computer vision)
 **Prototype status:** working. First release: Git tag `v1.0-first-release` (commit `fd19c04`, 13 Nov 2026). Current: tag `v1.1-privacy-fix` (commit `540f846`, 14 Nov 2026)
 
 ## Team
@@ -68,4 +68,7 @@ People are always named by role: **Employee**, **IT Administrator**, **Security 
 6. An Employee with enough rights can end the guard in Task Manager.
 7. The detection library (Ultralytics) did DNS lookups and sent anonymous usage statistics (no images, no log content) in v1.0. V1.1 switches this off. This was checked with a probe that sees Python-level network attempts only; real network traffic was not captured. See `04_Data_Privacy_Ethics_Risk.md`.
 8. The old stand-alone files `app.py` and `test_detection.py` are not part of the guard. `app.py` has no absence lock, and `test_detection.py` imports the library directly, so the switch-off does not cover it.
+9. The webcam sees only what is in its view. A phone outside the frame, a photo taken from a side angle, or a camera in the room (for example a CCTV camera) is not detected.
+10. V1 detects phones only. Other capture devices (tablets, cameras, smart glasses) are not detected; they are planned for V2.
+11. SessionGuard is an extra layer, not a replacement. It adds to VDI, privacy filters and office policy. See `06_Business_Case_and_Economics.md` section 11.
 Details and controls: `04_Data_Privacy_Ethics_Risk.md`.

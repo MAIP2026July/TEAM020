@@ -81,3 +81,5 @@ Python 3.11.9; ultralytics 8.4.142; opencv-python 5.0.0.93; pillow 12.3.0; torch
 - No custom model was trained (needs labelled phone images and time; out of V1).
 - Results come from one laptop and one camera.
 - The office check is a simulation.
+- The webcam sees only what is in its view. A phone outside the frame, a photo from a side angle, or another camera in the room is not detected.
+- V1 detects phones only. Other capture devices need a model trained on labelled images of them (planned for V2).

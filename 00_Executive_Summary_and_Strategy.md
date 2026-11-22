@@ -31,7 +31,9 @@ The working prototype was built and tuned by the team across many test rounds. T
 | Compliance Officer | "Let me defend every piece of data kept, to a regulator, in one page." |
 
 ## 4. Strategy
-**Positioning.** An internal security tool for a bank. It is not a monitoring product and not a productivity product.
+**Positioning.** A security control for the Employees of a Service Company who work on a Bank’s data. The Service Company buys it to show the Bank a working control. It is not a monitoring product and not a productivity product.
+
+**Place in the stack.** SessionGuard is an **extra layer on top of** VDI, privacy filters and office policy, not a replacement for them. It is for the case where Employees must work from home and office-only work is too costly. It cannot see anything outside the webcam’s view, including a CCTV or other camera in the room, and V1 detects phones only. Competitors and alternatives: `06_Business_Case_and_Economics.md` section 11.
 
 **Wedge.** One threat only: a phone camera pointed at the screen. One more rule that comes from the same camera view: an empty seat locks the session. Everything else is out of scope for V1.
 
