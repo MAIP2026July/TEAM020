@@ -43,6 +43,25 @@ What this does not prove: the probe sees Python-level attempts only, and real ne
 
 `config.json` (holds the real office IP list) and `session_log.txt` are excluded from Git.
 
+## 1a. How a Bank can check that SessionGuard is not the thief
+A security product has to earn trust itself. Everything below can be checked by a Bank’s security reviewer from the source code in `prototype/`. We did these checks ourselves on the V1.1 code (tag `v1.1-privacy-fix`).
+
+| What we claim | How to check it | What we found |
+|---|---|---|
+| **It stores no image or video** | Search the code for image and video writing (`imwrite`, `VideoWriter`, `.save(`) | None. The only file the guard writes is the text log, in `guard.py`. The screenshot behind the cover is taken in memory in `screen_cover.py`, shrunk, blurred and closed. It is never saved |
+| **It sends nothing out** | Search the code for network use (`urllib`, `requests`, `socket`, `http`) | The guard makes one call: the public-IP lookup to `api.ipify.org`, once at start, with a 10-second timeout (`guard_common.py`). Two helper scripts that the guard never runs also use the network (`show_ip.py`, `network_check.py`) |
+| **The detection library stays offline** | Check `detection.py` for the offline switch, then run the product and watch the network | `YOLO_OFFLINE=1` is set before the library loads. A probe that blocked and recorded Python-level network attempts saw none in 62 real predictions (29 through `detection.py`, 33 through the guard’s own start-up) |
+| **It does not read keystrokes or the mouse** | Search the code for keyboard and mouse hooks (`pynput`, `keyboard`, `GetAsyncKeyState`, `SetWindowsHook`) | None |
+| **The log holds only a time and an event** | Read the four log sentences in section 1 and the logging code in `guard.py` | Only those four sentences are written, one line each. No IP address, application name or image |
+| **The camera opens only after consent** | Click Decline and watch the camera light | The light stays off (informal test; see `05_Model_and_Evaluation.md`, T5) |
+| **A Bank can review exactly what runs** | Pin to a tagged version | The tags `v1.0-first-release` and `v1.1-privacy-fix` are in this repository |
+
+**What we do not have yet.** We want the Bank to know where our checks stop:
+- No independent security review of the code, and no signed builds. Both are planned for V2.
+- The network probe sees Python-level attempts only. A packet capture, run by the Bank’s own security team behind its firewall, is the stronger proof. It should show one connection: the IP lookup.
+- Most of the code that runs is not ours: the detection library, the vision library and the machine-learning framework. A Bank would review those as part of its supply chain checks. `requirements.txt` pins three packages; the versions of the others are listed in `05_Model_and_Evaluation.md`.
+- Windows only, and tested on one laptop.
+
 ## 2. Consent
 - A consent window appears every time the camera is about to open.
 - Decline: the camera is never opened and the protected application does not run.
