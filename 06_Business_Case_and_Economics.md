@@ -110,11 +110,70 @@ This table is our reasoning, not market data.
 
 Inference cost per month: ₹0 (no cloud inference).
 
-## 11. Positioning and competition
-- AI is the core of the product, not an add-on.
-- Standalone in V1; embedded in the Bank's VDI client in V3.
-- General data-loss-prevention suites mostly watch files, clipboards and printing. A camera-based phone check is a gap to confirm by market research before any sale.
-- Our edge for the Service Company is that it can show the Bank a working control, and that nothing is stored.
+## 11. Competitors, alternatives and positioning
+The problem of data leaving through a screen is more than 20 years old, so a buyer already has ways to deal with it. This section lists them, what each costs, and what each leaves open. We position SessionGuard as an **extra layer on top of these controls, not a replacement for them**: it is for the case where Employees must work from home and the usual answer ("come to the office") is too costly.
+
+Prices below come from public web pages found in November 2026. They are third-party snapshots, not official quotes, and must be re-checked before any pitch to a customer. Where a price is not public, the table says so.
+
+### 11a. Alternatives and what each leaves open
+| # | Alternative | What it does | What it costs (public information) | What it leaves open |
+|---|---|---|---|---|
+| 1 | **Office-only work, no phones on the floor** (the customer's manual alternative) | Keeps people and phones in a controlled area | No licence fee. The cost is lost flexibility, people leaving, and office space | No work from home. Critical-project people look for other jobs |
+| 2 | **VDI or DaaS** (Citrix, Microsoft Azure Virtual Desktop, VMware Horizon) | Keeps data on servers and blocks copy, paste and file download | Citrix: no official price list. Third-party sources give about $10 to $40 per user per month depending on edition and volume (one source: $13, $20 and $23 for three DaaS editions, one-year term, about 500 users). Azure Virtual Desktop: access is included with eligible Microsoft 365 plans, and Azure infrastructure is charged on top | Cannot see a phone camera pointed at the screen |
+| 3 | **Privacy filters and built-in privacy screens** (3M filters, HP Sure View) | Narrow the viewing angle so a person beside you cannot read the screen | 3M laptop filters: about $40 to $85 each in retailer listings; cheaper magnetic filters about $15 to $20. HP Sure View: HP estimated about $75 extra when launched in 2016; the current premium was not found | A camera directly in front of the screen still reads it. No log |
+| 4 | **Onlooker or presence detection built into laptops and services** (Dell Intelligent Privacy, Lenovo, HCLTech Onlooker Detection) | Uses the webcam to spot a person looking over your shoulder, then blurs or dims the screen | Bundled with supported hardware or sold as a service. Price not public | Detects a person looking, not a phone camera. Some features need specific hardware. The closest technology to ours |
+| 5 | **Data-loss-prevention suites** (Microsoft Purview and similar) | Watches files, email, clipboards and endpoints | Microsoft Purview Suite is listed at $12 per user per month (requires Microsoft 365 E3). Microsoft 365 E5, which includes it, is listed at about $60 on one regional page | Cannot see a photo of the screen taken by a phone |
+| 6 | **Dynamic screen watermarking** (Fasoo Smart Screen, Curtain MonGuard) | Shows the user’s name or ID over the screen so a leaked photo can be traced; Fasoo also logs capture attempts | Curtain MonGuard paid version: $10 per PC per year. Fasoo: price not public | Deters and traces after the photo is taken. It does not stop it |
+| 7 | **Employee-monitoring tools** (Teramind) | Records screens and user activity, with data-loss features | One review lists $12, $25 and $30 per user per month by plan; newer listings show lower annual rates. Sources conflict | Records Employees’ screens, which raises consent and privacy problems. Does not look for phone cameras |
+| 8 | **Patents and research** (a Dell patent for detecting an outside camera with the laptop camera; the ScreenAvoider research prototype) | Show that the webcam idea is possible | Not products | Our search found no widely used product built on this idea. This is a search result, not a full market study |
+
+### 11b. Market size and share
+We found **no reliable share figure** for the alternatives above, so we do not claim one. The signals we found are:
+- Gartner expects spending on desktop as a service to grow from $4.3 billion in 2025 to $6.0 billion in 2029, about 7.9 % a year.
+- On the review site PeerSpot, in October 2025, Citrix DaaS had 13.7 % of mindshare in the VDI category, Horizon Cloud 2.0 % and Oracle VDI 0.9 %. This measures attention on a review site, not sales.
+
+### 11c. Our closest competitors, and how we differ
+The closest are **laptop onlooker detection** (row 4) and **watermarking** (row 6).
+
+| | SessionGuard | Closest alternative |
+|---|---|---|
+| What it looks for | A phone, and whether a person is at the desk | A person looking over the shoulder (row 4); nothing, it only traces (row 6) |
+| Works on | Any Windows laptop with a webcam | Some features need specific hardware (row 4) |
+| What it keeps | A time and an event line. No image | Watermark tools log captures; monitoring tools record screens |
+| Consent | Asked every session | Not a design feature of most tools |
+| Who buys it | A Service Company, to show its Bank client a working control | Usually the IT or security team |
+
+**Our honest weakness.** Using the webcam is not unique to us, and a laptop maker or a VDI vendor could add phone detection. Our protection against that is not technology alone:
+- the no-storage design and the consent flow, which a Bank can audit;
+- the plan to add other capture devices (V2) and an audit view for the Bank (V3);
+- selling as an add-on to a Bank’s VDI instead of competing with it. A VDI vendor then becomes a partner, which carries the risk that it later builds its own version.
+
+### 11d. Compared with the customer’s manual alternative (100 seats, per year)
+| | Office-only work | SessionGuard |
+|---|---|---|
+| Cost to the Service Company | About ₹10 lakh of lost people (5 of 100 leave, at ₹2,00,000 each, team assumption (A)), plus office space, not counted | ₹6 lakh (₹500 × 100 seats × 12 months) |
+| Allows work from home | No | Yes, with consent every session |
+| Phone-camera theft | Not covered while working from home, because there is no work from home | Covered when the phone is in the webcam’s view |
+| What it cannot do | Keep critical people who want flexibility | See a device outside the webcam’s view, including a CCTV camera in the room |
+
+### 11e. Limits of this analysis
+- The prices and figures are public snapshots from the web, not quotes, and are marked as such.
+- We did not find the price of a product like ours, and we found no source for a market share. We say so instead of guessing.
+- Dell and HCLTech information comes from their public pages and brochures. We did not test their products or confirm whether they detect phones.
+
+### Sources
+- Citrix pricing, third-party: [Graphon](https://www.graphon.com/blog/examining-citrix-pricing), [Vendr](https://www.vendr.com/marketplace/citrix)
+- [Azure Virtual Desktop licensing (Microsoft)](https://learn.microsoft.com/azure/virtual-desktop/licensing)
+- [3M laptop privacy filters (Staples listings)](https://www.staples.com/Laptop-Privacy-Filters/cat_CL161004/00hf5)
+- [HP Sure View (LaptopMag)](https://www.laptopmag.com/articles/hp-sure-view)
+- [Dell Intelligent Privacy (PC Gamer)](https://www.pcgamer.com/dell-intelligent-privacy-optimizer)
+- [HCLTech Onlooker Detection brochure](https://www.hcltech.com/sites/default/files/documents/HCLTech_Onlooker_Detection_Brochure_design.pdf)
+- [Microsoft Purview Suite pricing](https://www.microsoft.com/en-us/security/business/purview-suite-pricing)
+- [Curtain MonGuard (SourceForge)](https://www.sourceforge.net/software/product/Curtain-MonGuard)
+- Teramind: [TechRadar review](https://www.techradar.com/reviews/teramind), [Capterra](https://www.capterra.com/p/172645/Teramind/pricing/)
+- [Dell patent, Device anti-surveillance system](https://patents.justia.com/patent/11756296)
+- [Gartner DaaS forecast (Virtualization Review)](https://virtualizationreview.com/articles/2025/08/14/gartner-daas-expands-beyond-remote-work-in-2025.aspx)
+- [PeerSpot VDI mindshare](https://www.peerspot.com/products/comparisons/citrix-daas-formerly-citrix-virtual-apps-and-desktops-service_vs_horizon-cloud-service_vs_oracle-vdi)
 
 ## 12. Risks to the numbers, and what the pilot must measure
 | Assumption (A) | Why it is weak | How the pilot measures it |
