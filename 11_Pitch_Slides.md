@@ -3,7 +3,7 @@ Team 020 – SessionGuard | Members: see `README.md`
 
 Framing: a security control that a **Service Company** buys to prove trust to its **Bank** client and to let Employees on critical projects work from home. The first value is stopping phone-camera theft (fines, loss, lost trust). The second value is keeping people. The ask is a funded 10-seat pilot.
 
-The deck is shared as a PowerPoint or PDF export with the submission. This file is its outline and the speaker plan.
+The deck itself is `11a_Pitch_Deck.pptx` in this repository, with speaker notes in every slide. This file is its outline and the speaker plan.
 
 ## Main slides
 | # | Slide | The one message | Speaker (suggested) |

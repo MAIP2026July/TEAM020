@@ -33,6 +33,7 @@ A bank Employee working on a sensitive screen outside the office is watched by t
 | 09 | `09_AI_Collaboration_Log.md` | How AI was used, real prompts, where the team overruled the AI |
 | 10 | `10_Contribution_Disclosure.md` | Who did what |
 | 11 | `11_Pitch_Slides.md` | The 10-minute pitch |
+| 11a | `11a_Pitch_Deck.pptx` | The final pitch deck: 17 main slides and 6 backup slides, with speaker notes |
 | 12 | `12_Security_Reviewer_View_V3_Concept.md` | A V3 mock-up screen (not part of the product) and how its data could be stored; files in `demo_manager_view/` |
 | – | `reflections/` | Individual reflections, one file per member (see `10_Contribution_Disclosure.md`) |
 | 05a | `05a_Formal_Test_Log_TEMPLATE.md` | Plan and blank log for the formal measurement run (planned for the pilot, not yet run) |
